@@ -1,4 +1,73 @@
 /* ============================================================
+   Scroll-triggered animations
+   ============================================================ */
+(function scrollAnimations() {
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-fade-in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Observe section heads, track rows, and speaker cards
+  document.querySelectorAll('.section-head, .track-row, .speaker-card, .timeline-item').forEach((el) => {
+    observer.observe(el);
+  });
+})();
+
+/* ============================================================
+   Staggered animations for multiple elements
+   ============================================================ */
+(function staggerAnimations() {
+  const observerOptions = {
+    threshold: 0.15,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && entry.target.classList.contains('speaker-grid')) {
+        const cards = entry.target.querySelectorAll('.speaker-card');
+        cards.forEach((card, index) => {
+          card.style.animation = 'none';
+          setTimeout(() => {
+            card.style.animation = `fadeInUp 0.8s ease-out forwards`;
+            card.style.animationDelay = `${index * 0.1}s`;
+          }, 10);
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.speaker-grid').forEach((el) => {
+    observer.observe(el);
+  });
+})();
+
+/* ============================================================
+   Hero text animation (triggered after sphere opening animation)
+   ============================================================ */
+(function heroTextAnimation() {
+  const heroCopy = document.querySelector('.hero-copy');
+  if (!heroCopy) return;
+
+  // Hide immediately (no flash of unstyled/visible content), then
+  // fade in once the sphere's opening move has mostly finished.
+  heroCopy.style.opacity = '0';
+  setTimeout(() => {
+    heroCopy.style.animation = 'fadeInUp 0.7s ease-out forwards';
+  }, 100);
+})();
+
+/* ============================================================
    Mobile nav toggle
    ============================================================ */
 (function navToggle() {
@@ -32,7 +101,11 @@
 
 /* ============================================================
    Bloch sphere — wireframe sphere with a precessing state vector.
-   Pure canvas 2D, no dependencies. Respects reduced-motion.
+   The sphere itself rotates on its own at a constant rate.
+   On hover, the STATE VECTOR (not the sphere) eases toward the
+   mouse position; on mouse-leave it eases back to its normal
+   auto-precession path. Pure canvas 2D, no dependencies.
+   Respects reduced-motion.
    ============================================================ */
 (function blochSphere() {
   const canvas = document.getElementById('bloch-canvas');
@@ -48,6 +121,14 @@
   const DOT = '#4B2170';
 
   let w, h, dpr;
+  let mouseNormX = 0;
+  let mouseNormY = 0;
+  let isHovering = false;
+
+  // Opening animation state
+  let animationTime = 0;
+  const ANIMATION_DURATION = 0.6; // seconds
+  let isAnimating = true;
 
   function resize() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -59,33 +140,42 @@
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
 
-  // Project a 3D point (unit sphere coords) to 2D screen space,
-  // with a simple rotation around the vertical axis for the "tilt"
-  // and a fixed elevation tilt so it reads as a sphere, not a circle.
+  // Mouse tracking — only affects the state vector, not the sphere's own rotation.
+  canvas.addEventListener('mouseenter', () => {
+    isHovering = true;
+  });
+
+  canvas.addEventListener('mouseleave', () => {
+    isHovering = false;
+  });
+
+  canvas.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    // Normalize to -1..1
+    mouseNormX = (x / rect.width) * 2 - 1;
+    mouseNormY = (y / rect.height) * 2 - 1;
+  });
+
   function project(x, y, z, cx, cy, r, rotY, tiltX) {
-    // rotate around Y axis
     const cosY = Math.cos(rotY), sinY = Math.sin(rotY);
     let x1 = x * cosY + z * sinY;
     let z1 = -x * sinY + z * cosY;
     let y1 = y;
 
-    // tilt around X axis (fixed elevation)
     const cosX = Math.cos(tiltX), sinX = Math.sin(tiltX);
     let y2 = y1 * cosX - z1 * sinX;
     let z2 = y1 * sinX + z1 * cosX;
 
-    const scale = 1 / (1 + z2 * 0.35); // mild perspective
+    const scale = 1 / (1 + z2 * 0.35);
     return {
       sx: cx + x1 * r * scale,
       sy: cy + y2 * r * scale,
       depth: z2,
       scale
     };
-  }
-
-  function ellipseFromCircle(points) {
-    // returns array of {sx, sy} for drawing a closed line
-    return points;
   }
 
   function circlePoints(axis, r, steps, cx, cy, radius, rotY, tiltX) {
@@ -95,7 +185,7 @@
       let x, y, z;
       if (axis === 'xy') { x = Math.cos(t); y = Math.sin(t); z = 0; }
       else if (axis === 'xz') { x = Math.cos(t); y = 0; z = Math.sin(t); }
-      else { x = 0; y = Math.cos(t); z = Math.sin(t); } // yz
+      else { x = 0; y = Math.cos(t); z = Math.sin(t); }
       pts.push(project(x, y, z, cx, cy, radius, rotY, tiltX));
     }
     return pts;
@@ -115,34 +205,57 @@
   }
 
   let angle = 0;
-  const tiltX = -0.32; // fixed elevation so the sphere reads in 3D
+  const tiltX = -0.32;
 
-  function draw() {
+  // Current + target spherical angles for the state vector.
+  // theta: polar angle from the |0> pole. phi: azimuthal angle.
+  const BASE_THETA = Math.PI / 2.6;
+  let vecTheta = BASE_THETA;
+  let vecPhi = 0;
+  const EASE = 0.08; // how quickly the vector eases toward its target
+
+  function draw(deltaTime) {
     ctx.clearRect(0, 0, w, h);
-    const cx = w / 2;
+
+    // Update opening animation time
+    if (isAnimating) {
+      animationTime += deltaTime / 1000; // ms -> s
+      if (animationTime >= ANIMATION_DURATION) {
+        isAnimating = false;
+        animationTime = ANIMATION_DURATION;
+      }
+    }
+
+    // Ease-out for the opening animation
+    const progress = Math.min(animationTime / ANIMATION_DURATION, 1);
+    const easeProgress = 1 - Math.pow(1 - progress, 3);
+
+    // Canvas starts at center, moves to the right
+    const cx = w / 2 + (w * 0.15) * easeProgress;
     const cy = h / 2;
     const r = Math.min(w, h) * 0.34;
 
+    // The sphere's own rotation is constant and never touched by the mouse.
     const rotY = angle;
 
-    // outer sphere outline (silhouette)
+    // Outer sphere outline
     ctx.beginPath();
     ctx.strokeStyle = LINE;
     ctx.lineWidth = 1.25;
     ctx.arc(cx, cy, r, 0, Math.PI * 2);
     ctx.stroke();
 
-    // equator (xz-ish plane, horizontal ellipse)
+    // Equator
     const equator = circlePoints('xz', r, 64, cx, cy, r, rotY, tiltX);
     strokePath(equator, LINE, 1);
 
-    // meridian great circles
+    // Meridian great circles
     const meridianA = circlePoints('yz', r, 64, cx, cy, r, rotY, tiltX);
     strokePath(meridianA, LINE_SOFT, 1);
     const meridianB = circlePoints('xy', r, 64, cx, cy, r, rotY + Math.PI / 2, tiltX);
     strokePath(meridianB, LINE_SOFT, 1);
 
-    // axis line (|0> to |1>, vertical)
+    // Axis line
     const top = project(0, 1, 0, cx, cy, r, rotY, tiltX);
     const bottom = project(0, -1, 0, cx, cy, r, rotY, tiltX);
     ctx.beginPath();
@@ -152,13 +265,27 @@
     ctx.lineTo(bottom.sx, bottom.sy);
     ctx.stroke();
 
-    // state vector — precesses around the vertical axis at a fixed
-    // polar angle, the way a qubit under free evolution would.
-    const theta = Math.PI / 2.6; // polar angle from |0>
-    const phi = angle * 1.6;     // azimuthal precession
-    const vx = Math.sin(theta) * Math.cos(phi);
-    const vy = Math.cos(theta);
-    const vz = Math.sin(theta) * Math.sin(phi);
+    // --- State vector target: auto-precession normally, mouse-driven on hover ---
+    const autoPhi = angle * 1.6;
+    let targetTheta = BASE_THETA;
+    let targetPhi = autoPhi;
+
+    if (isHovering) {
+      // Mouse Y tilts the vector toward/away from the poles,
+      // mouse X deflects it around the equator relative to its
+      // current auto-precession position.
+      targetTheta = BASE_THETA - mouseNormY * 0.9;
+      targetTheta = Math.max(0.2, Math.min(Math.PI - 0.2, targetTheta));
+      targetPhi = autoPhi + mouseNormX * 1.3;
+    }
+
+    // Ease the vector toward its target for a smooth, reactive feel
+    vecTheta += (targetTheta - vecTheta) * EASE;
+    vecPhi += (targetPhi - vecPhi) * EASE;
+
+    const vx = Math.sin(vecTheta) * Math.cos(vecPhi);
+    const vy = Math.cos(vecTheta);
+    const vz = Math.sin(vecTheta) * Math.sin(vecPhi);
     const tip = project(vx, vy, vz, cx, cy, r, rotY, tiltX);
     const origin = project(0, 0, 0, cx, cy, r, rotY, tiltX);
 
@@ -169,7 +296,7 @@
     ctx.lineTo(tip.sx, tip.sy);
     ctx.stroke();
 
-    // arrowhead
+    // Arrowhead
     const ang = Math.atan2(tip.sy - origin.sy, tip.sx - origin.sx);
     ctx.beginPath();
     ctx.fillStyle = ACCENT;
@@ -179,13 +306,13 @@
     ctx.closePath();
     ctx.fill();
 
-    // tip dot
+    // Tip dot
     ctx.beginPath();
     ctx.fillStyle = DOT;
     ctx.arc(tip.sx, tip.sy, 3.5, 0, Math.PI * 2);
     ctx.fill();
 
-    // pole labels
+    // Pole labels
     ctx.font = '13px "IBM Plex Mono", monospace';
     ctx.fillStyle = INK;
     ctx.textAlign = 'center';
@@ -197,8 +324,13 @@
     }
   }
 
-  function loop() {
-    draw();
+  let lastTime = performance.now();
+
+  function loop(currentTime) {
+    const deltaTime = currentTime - lastTime;
+    lastTime = currentTime;
+
+    draw(deltaTime);
     requestAnimationFrame(loop);
   }
 
@@ -206,8 +338,8 @@
   resize();
 
   if (prefersReduced) {
-    draw(); // static single frame
+    draw(0);
   } else {
-    loop();
+    requestAnimationFrame(loop);
   }
 })();
