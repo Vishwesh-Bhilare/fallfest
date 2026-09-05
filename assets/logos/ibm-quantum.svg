@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="IBM Quantum logo">
+  <rect width="64" height="64" rx="12" fill="#2D2342"/>
+  <text x="32" y="29" text-anchor="middle" fill="#F4F0FF" font-family="sans-serif" font-size="13" font-weight="700">IBM</text>
+  <text x="32" y="45" text-anchor="middle" fill="#D8C4F0" font-family="sans-serif" font-size="9">QUANTUM</text>
+</svg>

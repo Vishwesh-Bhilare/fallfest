@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="MIT WPU logo">
+  <rect x="4" y="4" width="56" height="56" rx="10" fill="#2D2342" stroke="#C4A3E8" stroke-width="2"/>
+  <text x="32" y="29" text-anchor="middle" fill="#F4F0FF" font-family="sans-serif" font-size="14" font-weight="700">MIT</text>
+  <text x="32" y="45" text-anchor="middle" fill="#D8C4F0" font-family="sans-serif" font-size="10">WPU</text>
+</svg>
