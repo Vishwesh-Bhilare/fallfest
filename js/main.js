@@ -1,12 +1,5 @@
-/* ============================================================
-   Scroll-triggered animations
-   ============================================================ */
 (function scrollAnimations() {
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-  };
-
+  const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -100px 0px' };
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -15,22 +8,11 @@
       }
     });
   }, observerOptions);
-
-  // Observe section heads, track rows, and speaker cards
-  document.querySelectorAll('.section-head, .track-row, .speaker-card, .timeline-item').forEach((el) => {
-    observer.observe(el);
-  });
+  document.querySelectorAll('.section-head, .track-row, .speaker-card, .timeline-item, .stat-cell').forEach((el) => observer.observe(el));
 })();
 
-/* ============================================================
-   Staggered animations for multiple elements
-   ============================================================ */
 (function staggerAnimations() {
-  const observerOptions = {
-    threshold: 0.15,
-    rootMargin: '0px 0px -50px 0px'
-  };
-
+  const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting && entry.target.classList.contains('speaker-grid')) {
@@ -46,30 +28,16 @@
       }
     });
   }, observerOptions);
-
-  document.querySelectorAll('.speaker-grid').forEach((el) => {
-    observer.observe(el);
-  });
+  document.querySelectorAll('.speaker-grid').forEach((el) => observer.observe(el));
 })();
 
-/* ============================================================
-   Hero text animation (triggered after sphere opening animation)
-   ============================================================ */
 (function heroTextAnimation() {
   const heroCopy = document.querySelector('.hero-copy');
   if (!heroCopy) return;
-
-  // Hide immediately (no flash of unstyled/visible content), then
-  // fade in once the sphere's opening move has mostly finished.
   heroCopy.style.opacity = '0';
-  setTimeout(() => {
-    heroCopy.style.animation = 'fadeInUp 0.7s ease-out forwards';
-  }, 100);
+  setTimeout(() => { heroCopy.style.animation = 'fadeInUp 0.7s ease-out forwards'; }, 100);
 })();
 
-/* ============================================================
-   Mobile nav toggle
-   ============================================================ */
 (function navToggle() {
   const btn = document.querySelector('.nav-toggle');
   const links = document.querySelector('.nav-links');
@@ -80,9 +48,6 @@
   });
 })();
 
-/* ============================================================
-   Schedule day tabs (schedule.html only)
-   ============================================================ */
 (function dayTabs() {
   const tabs = document.querySelectorAll('.day-tab');
   if (!tabs.length) return;
@@ -92,69 +57,42 @@
       tabs.forEach((t) => t.setAttribute('aria-selected', 'false'));
       tab.setAttribute('aria-selected', 'true');
       const target = tab.getAttribute('data-day');
-      panels.forEach((p) => {
-        p.style.display = p.getAttribute('data-day-panel') === target ? '' : 'none';
-      });
+      panels.forEach((p) => { p.style.display = p.getAttribute('data-day-panel') === target ? '' : 'none'; });
     });
   });
 })();
 
-/* ============================================================
-   Bloch sphere — wireframe sphere with a precessing state vector.
-   The sphere itself rotates on its own at a constant rate.
-   On hover, the STATE VECTOR (not the sphere) eases toward the
-   mouse position; on mouse-leave it eases back to its normal
-   auto-precession path. Pure canvas 2D, no dependencies.
-   Respects reduced-motion.
-   ============================================================ */
 (function blochSphere() {
   const canvas = document.getElementById('bloch-canvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
-
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const INK = '#4B2170';
+  const INK = '#31135E';
   const LINE = '#D9C9EE';
   const LINE_SOFT = '#EAE0F5';
-  const ACCENT = '#7C4DBF';
-  const DOT = '#4B2170';
+  const ACCENT = '#A56EFF';
+  const DOT = '#31135E';
 
   let w, h, dpr;
-  let mouseNormX = 0;
-  let mouseNormY = 0;
-  let isHovering = false;
-
-  // Opening animation state
+  let mouseNormX = 0, mouseNormY = 0, isHovering = false;
   let animationTime = 0;
-  const ANIMATION_DURATION = 0.6; // seconds
+  const ANIMATION_DURATION = 0.6;
   let isAnimating = true;
 
   function resize() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     const rect = canvas.getBoundingClientRect();
-    w = rect.width;
-    h = rect.height;
-    canvas.width = w * dpr;
-    canvas.height = h * dpr;
+    w = rect.width; h = rect.height;
+    canvas.width = w * dpr; canvas.height = h * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
 
-  // Mouse tracking — only affects the state vector, not the sphere's own rotation.
-  canvas.addEventListener('mouseenter', () => {
-    isHovering = true;
-  });
-
-  canvas.addEventListener('mouseleave', () => {
-    isHovering = false;
-  });
-
+  canvas.addEventListener('mouseenter', () => { isHovering = true; });
+  canvas.addEventListener('mouseleave', () => { isHovering = false; });
   canvas.addEventListener('mousemove', (e) => {
     const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    // Normalize to -1..1
+    const x = e.clientX - rect.left, y = e.clientY - rect.top;
     mouseNormX = (x / rect.width) * 2 - 1;
     mouseNormY = (y / rect.height) * 2 - 1;
   });
@@ -164,18 +102,11 @@
     let x1 = x * cosY + z * sinY;
     let z1 = -x * sinY + z * cosY;
     let y1 = y;
-
     const cosX = Math.cos(tiltX), sinX = Math.sin(tiltX);
     let y2 = y1 * cosX - z1 * sinX;
     let z2 = y1 * sinX + z1 * cosX;
-
     const scale = 1 / (1 + z2 * 0.35);
-    return {
-      sx: cx + x1 * r * scale,
-      sy: cy + y2 * r * scale,
-      depth: z2,
-      scale
-    };
+    return { sx: cx + x1 * r * scale, sy: cy + y2 * r * scale, depth: z2, scale };
   }
 
   function circlePoints(axis, r, steps, cx, cy, radius, rotY, tiltX) {
@@ -196,66 +127,43 @@
     ctx.strokeStyle = color;
     ctx.lineWidth = width;
     if (dashed) ctx.setLineDash([3, 4]); else ctx.setLineDash([]);
-    pts.forEach((p, i) => {
-      if (i === 0) ctx.moveTo(p.sx, p.sy);
-      else ctx.lineTo(p.sx, p.sy);
-    });
+    pts.forEach((p, i) => { if (i === 0) ctx.moveTo(p.sx, p.sy); else ctx.lineTo(p.sx, p.sy); });
     ctx.stroke();
     ctx.setLineDash([]);
   }
 
   let angle = 0;
   const tiltX = -0.32;
-
-  // Current + target spherical angles for the state vector.
-  // theta: polar angle from the |0> pole. phi: azimuthal angle.
   const BASE_THETA = Math.PI / 2.6;
-  let vecTheta = BASE_THETA;
-  let vecPhi = 0;
-  const EASE = 0.08; // how quickly the vector eases toward its target
+  let vecTheta = BASE_THETA, vecPhi = 0;
+  const EASE = 0.08;
 
   function draw(deltaTime) {
     ctx.clearRect(0, 0, w, h);
-
-    // Update opening animation time
     if (isAnimating) {
-      animationTime += deltaTime / 1000; // ms -> s
-      if (animationTime >= ANIMATION_DURATION) {
-        isAnimating = false;
-        animationTime = ANIMATION_DURATION;
-      }
+      animationTime += deltaTime / 1000;
+      if (animationTime >= ANIMATION_DURATION) { isAnimating = false; animationTime = ANIMATION_DURATION; }
     }
-
-    // Ease-out for the opening animation
     const progress = Math.min(animationTime / ANIMATION_DURATION, 1);
     const easeProgress = 1 - Math.pow(1 - progress, 3);
-
-    // Canvas starts at center, moves to the right
     const cx = w / 2 + (w * 0.15) * easeProgress;
     const cy = h / 2;
     const r = Math.min(w, h) * 0.34;
-
-    // The sphere's own rotation is constant and never touched by the mouse.
     const rotY = angle;
 
-    // Outer sphere outline
     ctx.beginPath();
     ctx.strokeStyle = LINE;
     ctx.lineWidth = 1.25;
     ctx.arc(cx, cy, r, 0, Math.PI * 2);
     ctx.stroke();
 
-    // Equator
     const equator = circlePoints('xz', r, 64, cx, cy, r, rotY, tiltX);
     strokePath(equator, LINE, 1);
-
-    // Meridian great circles
     const meridianA = circlePoints('yz', r, 64, cx, cy, r, rotY, tiltX);
     strokePath(meridianA, LINE_SOFT, 1);
     const meridianB = circlePoints('xy', r, 64, cx, cy, r, rotY + Math.PI / 2, tiltX);
     strokePath(meridianB, LINE_SOFT, 1);
 
-    // Axis line
     const top = project(0, 1, 0, cx, cy, r, rotY, tiltX);
     const bottom = project(0, -1, 0, cx, cy, r, rotY, tiltX);
     ctx.beginPath();
@@ -265,21 +173,13 @@
     ctx.lineTo(bottom.sx, bottom.sy);
     ctx.stroke();
 
-    // --- State vector target: auto-precession normally, mouse-driven on hover ---
     const autoPhi = angle * 1.6;
-    let targetTheta = BASE_THETA;
-    let targetPhi = autoPhi;
-
+    let targetTheta = BASE_THETA, targetPhi = autoPhi;
     if (isHovering) {
-      // Mouse Y tilts the vector toward/away from the poles,
-      // mouse X deflects it around the equator relative to its
-      // current auto-precession position.
       targetTheta = BASE_THETA - mouseNormY * 0.9;
       targetTheta = Math.max(0.2, Math.min(Math.PI - 0.2, targetTheta));
       targetPhi = autoPhi + mouseNormX * 1.3;
     }
-
-    // Ease the vector toward its target for a smooth, reactive feel
     vecTheta += (targetTheta - vecTheta) * EASE;
     vecPhi += (targetPhi - vecPhi) * EASE;
 
@@ -296,7 +196,6 @@
     ctx.lineTo(tip.sx, tip.sy);
     ctx.stroke();
 
-    // Arrowhead
     const ang = Math.atan2(tip.sy - origin.sy, tip.sx - origin.sx);
     ctx.beginPath();
     ctx.fillStyle = ACCENT;
@@ -306,40 +205,29 @@
     ctx.closePath();
     ctx.fill();
 
-    // Tip dot
     ctx.beginPath();
     ctx.fillStyle = DOT;
     ctx.arc(tip.sx, tip.sy, 3.5, 0, Math.PI * 2);
     ctx.fill();
 
-    // Pole labels
     ctx.font = '13px "IBM Plex Mono", monospace';
     ctx.fillStyle = INK;
     ctx.textAlign = 'center';
     ctx.fillText('|0⟩', top.sx, top.sy - 12);
     ctx.fillText('|1⟩', bottom.sx, bottom.sy + 20);
 
-    if (!prefersReduced) {
-      angle += 0.006;
-    }
+    if (!prefersReduced) angle += 0.006;
   }
 
   let lastTime = performance.now();
-
   function loop(currentTime) {
     const deltaTime = currentTime - lastTime;
     lastTime = currentTime;
-
     draw(deltaTime);
     requestAnimationFrame(loop);
   }
 
   window.addEventListener('resize', resize);
   resize();
-
-  if (prefersReduced) {
-    draw(0);
-  } else {
-    requestAnimationFrame(loop);
-  }
+  if (prefersReduced) { draw(0); } else { requestAnimationFrame(loop); }
 })();

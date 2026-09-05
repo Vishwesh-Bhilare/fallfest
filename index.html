@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Decade of Quantum on Cloud — Multi-Institute Quantum Computing Festival</title>
-<meta name="description" content="A Decade of Quantum on Cloud is a multi-day quantum computing festival featuring talks, workshops, a faculty development program, and a hackathon across multiple institutes.">
+<title>A Decade of Quantum on Cloud — Qiskit Fall Fest 2026</title>
+<meta name="description" content="A Decade of Quantum on Cloud is a multi-day quantum computing festival featuring talks, hands-on Qiskit workshops, a faculty development program, and a hackathon across multiple institutes.">
+<link rel="icon" type="image/svg+xml" href="assets/mark.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -15,21 +16,17 @@
 <header class="site-header">
   <nav class="nav">
     <a href="index.html" class="brand">
-      <svg class="brand-mark" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <circle cx="14" cy="14" r="12" stroke="#4B2170" stroke-width="1.3"/>
-        <ellipse cx="14" cy="14" rx="12" ry="4.2" stroke="#7C4DBF" stroke-width="1"/>
-        <circle cx="14" cy="14" r="1.6" fill="#4B2170"/>
-      </svg>
+      <img src="assets/mark.svg" alt="" class="brand-mark">
       A Decade of Quantum
     </a>
-    <button class="nav-toggle" aria-label="Lorem ipsum dolor" aria-expanded="false">
+    <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links">
       <li><a href="index.html" aria-current="page">Home</a></li>
       <li><a href="schedule.html">Schedule</a></li>
       <li><a href="speakers.html">Speakers</a></li>
-      <li><a href="#" class="nav-cta">Register</a></li>
+      <li><a href="#register" class="nav-cta">Register</a></li>
     </ul>
   </nav>
 </header>
@@ -40,23 +37,26 @@
   <section class="hero">
     <div class="wrap">
       <div class="hero-copy">
-        <div class="eyebrow-line">In partnership with IBM Qiskit</div>
+        <div class="eyebrow-line">Qiskit Fall Fest 2026 · In partnership with IBM Quantum</div>
         <h1>A Decade of Quantum on Cloud: Building the Future of Distributed Quantum Computing</h1>
         <p class="hero-sub">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua — no prior quantum experience required.
-          Organized across multiple institutes in partnership with IBM Qiskit.
+          Ten years ago, a quantum computer went live on the cloud for the first time — and changed who gets to run one.
+          Join researchers, students, and builders across multiple institutes for three days of talks, hands-on Qiskit
+          workshops, and a hackathon. No prior quantum experience required.
         </p>
         <div class="hero-meta">
-          <div><span class="mono">Lorem</span><span>October 2026</span></div>
-          <div><span class="mono">Dolor</span><span>Pune</span></div>
-          <div><span class="mono">Sit</span><span>Hybrid</span></div>
+          <div><span class="mono">Dates</span><span>Oct 15–17, 2026</span></div>
+          <div><span class="mono">Location</span><span>Pune, India</span></div>
+          <div><span class="mono">Format</span><span>Hybrid — in person + livestream</span></div>
         </div>
         <div class="hero-ctas">
-          <a href="#" class="btn btn-primary">Consectetur adipiscing</a>
-          <a href="schedule.html" class="btn btn-secondary">Elit sed do</a>
+          <a href="#register" class="btn btn-primary">Register Now</a>
+          <a href="schedule.html" class="btn btn-secondary">View Schedule</a>
+          <img src="assets/badge.svg" alt="Qiskit Fall Fest 2026 badge" class="hero-seal">
         </div>
       </div>
       <div class="hero-visual">
+        <img src="assets/hero-illustration.svg" alt="" class="hero-visual-bg" aria-hidden="true">
         <canvas id="bloch-canvas" width="420" height="420" role="img" aria-label="Animated diagram of a Bloch sphere, used to represent the state of a qubit"></canvas>
       </div>
     </div>
@@ -65,15 +65,28 @@
   <!-- ============ ABOUT ============ -->
   <section class="section" id="about">
     <div class="wrap">
+      <div class="deco" style="--rot:-6deg; width:64px; bottom:-16px; left:-40px;" >
+        <img src="assets/sticker-bluebird.svg" alt="" class="animate-float">
+      </div>
       <div class="section-head">
         <h2>About the Event</h2>
         <div class="section-note">
           <p class="about-body">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua from multiple institutes.
+            Qiskit Fall Fest is a global series of student-run quantum computing events supported by IBM Quantum.
+            This year's edition marks a decade since quantum hardware first became publicly accessible on the cloud —
+            and brings that story to life across multiple host institutes at once.
           </p>
           <p class="about-body">
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            Expect keynotes from researchers and industry practitioners, beginner-friendly workshops that take you from
+            your first circuit to running on real quantum hardware, and a 48-hour hackathon where teams build and
+            demo original projects with mentors on hand.
           </p>
+          <div class="stats-row">
+            <div class="stat-cell"><span class="stat-num">3</span><span class="stat-label">Days</span></div>
+            <div class="stat-cell"><span class="stat-num">4+</span><span class="stat-label">Institutes</span></div>
+            <div class="stat-cell"><span class="stat-num">10+</span><span class="stat-label">Sessions</span></div>
+            <div class="stat-cell"><span class="stat-num">0</span><span class="stat-label">Experience required</span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -82,17 +95,24 @@
   <!-- ============ WHAT TO EXPECT / TRACKS ============ -->
   <section class="section" id="tracks">
     <div class="wrap">
+      <div class="deco" style="--rot:8deg; width:78px; top:-30px; right:0;">
+        <img src="assets/sticker-kookaburra.svg" alt="" class="animate-float-slow">
+      </div>
+      <div class="deco" style="--rot:-4deg; width:118px; top:-10px; right:110px;">
+        <img src="assets/pill-qiskit.svg" alt="" class="animate-float">
+      </div>
       <div class="section-head">
         <h2>What to Expect</h2>
-        <div class="section-note">Lorem ipsum dolor sit amet.</div>
+        <div class="section-note">Four tracks, one festival — pick what fits you.</div>
       </div>
       <div class="track-list">
         <div class="track-row">
           <div class="track-index mono">01</div>
           <div>
-            <h3>Lorem Ipsum</h3>
+            <h3>Keynotes &amp; Talks</h3>
             <p>
-              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+              Hear from researchers and industry practitioners on where quantum computing is headed —
+              from error correction to real-world applications running on cloud hardware today.
             </p>
           </div>
         </div>
@@ -100,9 +120,10 @@
         <div class="track-row">
           <div class="track-index mono">02</div>
           <div>
-            <h3>Consectetur</h3>
+            <h3>Hands-on Workshops</h3>
             <p>
-              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              Build your first Qiskit circuit and run it on real quantum hardware. Sessions are structured for
+              complete beginners, with mentors circulating throughout.
             </p>
           </div>
         </div>
@@ -110,9 +131,10 @@
         <div class="track-row">
           <div class="track-index mono">03</div>
           <div>
-            <h3>Adipiscing Elit</h3>
+            <h3>Hackathon</h3>
             <p>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
+              Form a team of 2–4 and spend the weekend building an original quantum computing project,
+              with mentor support and a demo showcase to close things out.
             </p>
           </div>
         </div>
@@ -120,9 +142,10 @@
         <div class="track-row">
           <div class="track-index mono">04</div>
           <div>
-            <h3>Sed Do Eiusmod</h3>
+            <h3>Faculty Development Program</h3>
             <p>
-              Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.
+              A dedicated track for educators looking to bring quantum computing into their own classrooms,
+              with ready-to-use curriculum and lab material.
             </p>
           </div>
         </div>
@@ -133,45 +156,52 @@
   <!-- ============ PARTNERS ============ -->
   <section class="section" id="partners">
     <div class="wrap">
+      <div class="deco" style="--rot:5deg; width:96px; top:-20px; right:20px;">
+        <img src="assets/sticker-hummingbirds.svg" alt="" class="animate-float">
+      </div>
       <div class="section-head">
         <h2>Organized By</h2>
-        <div class="section-note">Lorem ipsum dolor sit amet.</div>
+        <div class="section-note">A collaboration across host institutes, in partnership with IBM Quantum.</div>
       </div>
       <div class="partners-strip">
         <div class="partner-slot">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
             <rect x="1" y="1" width="18" height="18" rx="2" stroke="currentColor"/>
           </svg>
-          Lorem Ipsum
+          Host Institute A
         </div>
         <div class="partner-slot">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
             <rect x="1" y="1" width="18" height="18" rx="2" stroke="currentColor"/>
           </svg>
-          Dolor Sit
+          Host Institute B
         </div>
         <div class="partner-slot">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
             <rect x="1" y="1" width="18" height="18" rx="2" stroke="currentColor"/>
           </svg>
-          Amet Consectetur
+          Host Institute C
         </div>
         <div class="partner-slot">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
             <rect x="1" y="1" width="18" height="18" rx="2" stroke="currentColor"/>
           </svg>
-          IBM Qiskit
+          IBM Quantum
         </div>
       </div>
     </div>
   </section>
 
   <!-- ============ CTA BANNER ============ -->
-  <section class="cta-banner">
-    <div class="wrap">
-      <h2>Lorem Ipsum Dolor</h2>
-      <p>Consectetur adipiscing elit sed do.</p>
-      <a href="#" class="btn btn-primary">Eiusmod Tempor</a>
+  <section class="section-cta" id="register">
+    <div class="cta-banner">
+      <div class="cta-banner-inner">
+        <div>
+          <h2>Ready to explore the next decade of quantum?</h2>
+          <p>Registration is free — seats for in-person workshops are limited.</p>
+        </div>
+        <a href="#" class="btn btn-primary">Reserve Your Spot</a>
+      </div>
     </div>
   </section>
 
@@ -181,28 +211,31 @@
   <div class="wrap">
     <div class="footer-grid">
       <div>
-        <h4>A Decade of Quantum on Cloud</h4>
+        <div class="footer-brand">
+          <img src="assets/mark.svg" alt="">
+          <h4 style="margin:0; color: var(--ink); font-family: var(--font-display); font-size: 1rem;">A Decade of Quantum on Cloud</h4>
+        </div>
         <p style="color: var(--ink-soft); max-width: 34ch; font-size: 0.94rem;">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          A multi-institute Qiskit Fall Fest celebrating ten years of quantum computing on the cloud.
           Pune · October 2026 · Hybrid
         </p>
       </div>
 
       <div>
-        <h4>Lorem</h4>
+        <h4>Explore</h4>
         <ul>
-          <li><a href="index.html">Ipsum</a></li>
-          <li><a href="schedule.html">Dolor</a></li>
-          <li><a href="speakers.html">Sit</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="schedule.html">Schedule</a></li>
+          <li><a href="speakers.html">Speakers</a></li>
         </ul>
       </div>
 
       <div>
-        <h4>Consectetur</h4>
+        <h4>Contact</h4>
         <ul>
-          <li><a href="mailto:hello@example.com">Adipiscing elit</a></li>
-          <li><a href="#">@lorem</a></li>
-          <li><a href="#">Dolor sit</a></li>
+          <li><a href="mailto:hello@example.com">hello@example.com</a></li>
+          <li><a href="#">@qiskitfallfest</a></li>
+          <li><a href="#">Community forum</a></li>
         </ul>
       </div>
     </div>
