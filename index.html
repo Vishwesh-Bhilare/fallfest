@@ -30,16 +30,7 @@
 <header class="site-header" id="site-header">
   <nav class="nav" aria-label="Main navigation">
     <a href="#home" class="brand" id="brand-logo" aria-label="Fall Fest — Home">
-      <img class="brand-logo" src="assets/logos/fall-fest-logo.svg" alt="Fall Fest logo">
-      <!-- Quantum atom logo mark -->
-      <svg class="brand-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <circle cx="16" cy="16" r="13" stroke="#4B2170" stroke-width="1.4"/>
-        <ellipse cx="16" cy="16" rx="13" ry="4.5" stroke="#7C4DBF" stroke-width="1" stroke-dasharray="2 2"/>
-        <ellipse cx="16" cy="16" rx="13" ry="4.5" stroke="#7C4DBF" stroke-width="1" transform="rotate(60 16 16)" stroke-dasharray="2 2"/>
-        <ellipse cx="16" cy="16" rx="13" ry="4.5" stroke="#7C4DBF" stroke-width="1" transform="rotate(120 16 16)" stroke-dasharray="2 2"/>
-        <circle cx="16" cy="16" r="2.2" fill="#4B2170"/>
-        <circle cx="29" cy="16" r="1.5" fill="#9B6FD4"/>
-      </svg>
+      <img class="brand-mark" src="assets/logos/Qiskit%20Fall%20Fest%202026%20Black.png" alt="Qiskit Fall Fest logo">
       <span>Fall Fest</span>
     </a>
 
@@ -49,12 +40,13 @@
 
     <ul class="nav-links" id="nav-links" role="list">
       <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
       <li><a href="#haqthon">HaQthon</a></li>
       <li><a href="#schedule">Schedule</a></li>
       <li><a href="#speakers">Speakers</a></li>
       <li><a href="#collaboration">Collaboration</a></li>
+      <li><a href="#arena">Quantum 101</a></li>
       <li><a href="#social">Social Media</a></li>
-      <li><a href="#arena">Quantum Arena</a></li>
       <li><a href="#register" class="nav-cta">Register</a></li>
     </ul>
   </nav>
@@ -80,7 +72,7 @@
     <div class="hero-copy" id="hero-copy">
       <div class="eyebrow-line">
         <span class="mono">In partnership with</span>
-        <span class="eyebrow-badge">IBM Qiskit</span>
+        <span class="eyebrow-badge"><span>IBM</span><img src="assets/logos/qiskit%20.png" alt="Qiskit logo"></span>
       </div>
 
       <h1>Qiskit Fall Fest:<br><span class="gradient-text">A Decade of Quantum on Cloud</span></h1>
@@ -96,7 +88,7 @@
       <div class="hero-quick-links">
         <a class="quick-link" href="#register">Register for Events</a>
         <a class="quick-link" href="#haqthon">Explore HaQthon</a>
-        <a class="quick-link" href="#arena">Quantum Arena</a>
+        <a class="quick-link" href="#arena">Quantum 101</a>
       </div>
 
       <div class="event-identity">
@@ -119,14 +111,6 @@
           <span class="meta-label mono">Format</span>
           <span class="meta-value">Hybrid</span>
         </div>
-      </div>
-
-      <div class="hero-ctas">
-        <a href="#register" class="btn btn-primary" id="hero-register-btn">
-          <span>Register Now</span>
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="#quantum" class="btn btn-secondary" id="hero-explore-btn">Explore the Quantum</a>
       </div>
 
       <!-- Hidden Feynman quote easter egg trigger -->
@@ -232,12 +216,50 @@
 </section>
 
 <!-- ============================================================
+     ABOUT
+     ============================================================ -->
+<section class="section" id="about" aria-labelledby="about-heading">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-kicker">About</div>
+      <h2 id="about-heading">Ten years. One cloud.<br>Infinite possibilities.</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-body reveal">
+        <p>
+          In 2016, IBM made quantum computing accessible to anyone on the planet with an internet connection. That was the beginning of a decade-long experiment in democratizing one of the most profound technologies ever conceived.
+        </p>
+        <p>
+          Qiskit Fall Fest 2026 gathers students, researchers, engineers, and curious minds to reflect on that journey — and to explore what comes next. Through talks, workshops, panels, and hands-on sessions, we'll examine the ideas that have shaped quantum computing and the ones that will define its future.
+        </p>
+        <p>
+          No quantum physics degree required. Just curiosity.
+        </p>
+      </div>
+    </div>
+    <p class="about-cloud-description reveal">Your circuit. IBM's quantum computer. The cloud in between.</p>
+    <div class="about-timeline reveal" aria-labelledby="about-timeline-heading">
+      <div class="section-kicker">A Decade of Quantum</div>
+      <h3 id="about-timeline-heading">2016 → 2026.<br>Ten years that changed computing.</h3>
+      <div class="timeline-scroll-container" role="region" aria-label="Quantum computing decade timeline - scroll horizontally">
+        <div class="timeline-track" id="timeline-track"></div>
+      </div>
+      <div class="timeline-nav" aria-label="Timeline navigation">
+        <button class="timeline-nav-btn" id="tl-prev" aria-label="Previous milestone">←</button>
+        <div class="timeline-progress" id="tl-progress" aria-hidden="true"></div>
+        <button class="timeline-nav-btn" id="tl-next" aria-label="Next milestone">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
      HAQTHON
      ============================================================ -->
 <section class="section haqthon-section" id="haqthon" aria-labelledby="haqthon-heading">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="section-kicker mono">/ HaQthon</div>
+      <div class="section-kicker">HaQthon</div>
       <h2 id="haqthon-heading">Turn quantum curiosity into something real.</h2>
     </div>
     <div class="haqthon-grid">
@@ -255,80 +277,17 @@
 </section>
 
 <!-- ============================================================
-     ABOUT
-     ============================================================ -->
-<section class="section" id="about" aria-labelledby="about-heading">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="section-kicker mono">/ About</div>
-      <h2 id="about-heading">Ten years. One cloud.<br>Infinite possibilities.</h2>
-    </div>
-    <div class="about-grid">
-      <div class="about-body reveal">
-        <p>
-          In 2016, IBM made quantum computing accessible to anyone on the planet with an internet connection. That was the beginning of a decade-long experiment in democratizing one of the most profound technologies ever conceived.
-        </p>
-        <p>
-          Qiskit Fall Fest 2026 gathers students, researchers, engineers, and curious minds to reflect on that journey — and to explore what comes next. Through talks, workshops, panels, and hands-on sessions, we'll examine the ideas that have shaped quantum computing and the ones that will define its future.
-        </p>
-        <p>
-          No quantum physics degree required. Just curiosity.
-        </p>
-      </div>
-      <div class="track-cards">
-        <div class="track-card reveal" style="--delay:0.05s">
-          <div class="track-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </div>
-          <div>
-            <h3>Quantum Talks</h3>
-            <p>Expert presentations on the state of the art — hardware, algorithms, error correction, and more.</p>
-          </div>
-        </div>
-        <div class="track-card reveal" style="--delay:0.1s">
-          <div class="track-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <div>
-            <h3>Hands-On Workshops</h3>
-            <p>Code real quantum circuits on IBM Quantum hardware using Qiskit. Beginner-friendly with guided labs.</p>
-          </div>
-        </div>
-        <div class="track-card reveal" style="--delay:0.15s">
-          <div class="track-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </div>
-          <div>
-            <h3>Expert Panels</h3>
-            <p>Moderated conversations with leading researchers on the future of quantum technology and education.</p>
-          </div>
-        </div>
-        <div class="track-card reveal" style="--delay:0.2s">
-          <div class="track-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="none"/></svg>
-          </div>
-          <div>
-            <h3>Networking Sessions</h3>
-            <p>Connect with students, researchers, and professionals in the quantum ecosystem across India and beyond.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
      QUANTUM 101 — QUBIT EXPLAINER
      ============================================================ -->
-<section class="section section-raised" id="quantum" aria-labelledby="quantum-heading">
+<section class="section section-raised" id="arena" aria-labelledby="quantum-heading">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="section-kicker mono">/ What is a Qubit?</div>
+      <div class="section-kicker">Quantum 101</div>
+      <div class="arena-question">What is a Qubit?</div>
       <h2 id="quantum-heading">Not just a faster bit.<br>A fundamentally different one.</h2>
     </div>
 
     <div class="bit-qubit-demo reveal">
-      <!-- Classical bit -->
       <div class="bit-card" id="bit-card">
         <div class="bit-label mono">BIT</div>
         <div class="bit-display" id="bit-display">
@@ -339,13 +298,11 @@
         <button class="bit-flip-btn" id="bit-flip-btn" aria-label="Flip the classical bit">Flip bit</button>
       </div>
 
-      <!-- Arrow -->
       <div class="transition-arrow" aria-hidden="true">
         <div class="arrow-line"></div>
         <div class="arrow-label mono">quantum leap</div>
       </div>
 
-      <!-- Qubit -->
       <div class="bit-card qubit-card" id="qubit-card">
         <div class="bit-label mono">QUBIT</div>
         <div class="qubit-display" id="qubit-display">
@@ -372,7 +329,6 @@
       </div>
     </div>
 
-    <!-- Measurement easter egg -->
     <div class="measure-egg reveal" id="measure-egg">
       <div class="measure-egg-inner">
         <div class="measure-state" id="measure-state-display">
@@ -404,90 +360,11 @@
 </section>
 
 <!-- ============================================================
-     CLOUD + QUANTUM VISUALIZATION
-     ============================================================ -->
-<section class="section" id="cloud-quantum" aria-labelledby="cloud-heading">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="section-kicker mono">/ Quantum on Cloud</div>
-      <h2 id="cloud-heading">Your circuit. IBM's quantum computer. The cloud in between.</h2>
-    </div>
-    <div class="cloud-flow-vis reveal" id="cloud-flow" aria-label="Visualization of a quantum circuit being executed in the cloud">
-      <div class="flow-node" id="flow-browser">
-        <div class="flow-icon">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-            <rect x="2" y="5" width="28" height="20" rx="2" stroke="currentColor" stroke-width="1.5"/>
-            <line x1="2" y1="25" x2="30" y2="25" stroke="currentColor" stroke-width="1.5"/>
-            <line x1="13" y1="28" x2="19" y2="28" stroke="currentColor" stroke-width="1.5"/>
-          </svg>
-        </div>
-        <div class="flow-label mono">Your Browser</div>
-        <div class="flow-sub">Write Qiskit code</div>
-      </div>
-      <div class="flow-connector" id="flow-c1">
-        <div class="flow-packet" id="flow-packet-1"></div>
-        <svg width="60" height="2" viewBox="0 0 60 2" aria-hidden="true"><line x1="0" y1="1" x2="60" y2="1" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/></svg>
-      </div>
-      <div class="flow-node" id="flow-cloud">
-        <div class="flow-icon">
-          <svg width="32" height="28" viewBox="0 0 32 28" fill="none" aria-hidden="true">
-            <path d="M8 22a6 6 0 010-12 8 8 0 0116 2 5 5 0 010 10H8Z" stroke="currentColor" stroke-width="1.5"/>
-          </svg>
-        </div>
-        <div class="flow-label mono">IBM Cloud</div>
-        <div class="flow-sub">Queue & execute</div>
-      </div>
-      <div class="flow-connector" id="flow-c2">
-        <div class="flow-packet" id="flow-packet-2"></div>
-        <svg width="60" height="2" viewBox="0 0 60 2" aria-hidden="true"><line x1="0" y1="1" x2="60" y2="1" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/></svg>
-      </div>
-      <div class="flow-node" id="flow-qpu">
-        <div class="flow-icon">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-            <rect x="6" y="6" width="20" height="20" rx="2" stroke="currentColor" stroke-width="1.5"/>
-            <circle cx="11" cy="11" r="2" stroke="currentColor" stroke-width="1"/>
-            <circle cx="16" cy="11" r="2" stroke="currentColor" stroke-width="1"/>
-            <circle cx="21" cy="11" r="2" stroke="currentColor" stroke-width="1"/>
-            <circle cx="11" cy="16" r="2" stroke="currentColor" stroke-width="1"/>
-            <circle cx="16" cy="16" r="2" fill="currentColor" opacity="0.5"/>
-            <circle cx="21" cy="16" r="2" stroke="currentColor" stroke-width="1"/>
-            <circle cx="11" cy="21" r="2" stroke="currentColor" stroke-width="1"/>
-            <circle cx="16" cy="21" r="2" stroke="currentColor" stroke-width="1"/>
-            <circle cx="21" cy="21" r="2" stroke="currentColor" stroke-width="1"/>
-          </svg>
-        </div>
-        <div class="flow-label mono">Quantum Processor</div>
-        <div class="flow-sub">127+ qubits</div>
-      </div>
-      <div class="flow-connector flow-return" id="flow-c3">
-        <div class="flow-packet flow-packet-return" id="flow-packet-3"></div>
-        <svg width="60" height="2" viewBox="0 0 60 2" aria-hidden="true"><line x1="0" y1="1" x2="60" y2="1" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/></svg>
-      </div>
-      <div class="flow-node" id="flow-result">
-        <div class="flow-icon flow-result-icon">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-            <rect x="4" y="4" width="24" height="24" rx="2" stroke="currentColor" stroke-width="1.5"/>
-            <path d="M8 20 L12 10 L16 18 L20 12 L24 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          </svg>
-        </div>
-        <div class="flow-label mono">Results</div>
-        <div class="flow-sub">Measurement outcomes</div>
-      </div>
-    </div>
-    <div class="cloud-flow-caption reveal">
-      <button class="btn btn-secondary" id="flow-play-btn" aria-label="Animate the quantum circuit flow">Run Circuit ▶</button>
-      <span class="mono cloud-caption-text">Click to simulate sending a quantum circuit to the cloud</span>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
      QUANTUM CIRCUIT INTERACTION
      ============================================================ -->
-<section class="section section-raised" id="arena" aria-labelledby="circuit-heading">
+<section class="section section-raised" id="circuit" aria-labelledby="circuit-heading">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="section-kicker mono">/ Quantum Arena</div>
       <h2 id="circuit-heading">Build a quantum circuit.<br>Right here.</h2>
     </div>
     <p class="section-intro reveal">Click gates to add them. See the quantum state evolve. Click Measure to get a result.</p>
@@ -533,37 +410,12 @@
 </section>
 
 <!-- ============================================================
-     DECADE TIMELINE
-     ============================================================ -->
-<section class="section" id="timeline" aria-labelledby="timeline-heading">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="section-kicker mono">/ A Decade of Quantum</div>
-      <h2 id="timeline-heading">2016 → 2026.<br>Ten years that changed computing.</h2>
-    </div>
-  </div>
-  <!-- Full-width timeline -->
-  <div class="timeline-scroll-container" role="region" aria-label="Quantum computing decade timeline — scroll horizontally">
-    <div class="timeline-track" id="timeline-track">
-      <!-- Populated by JS from data/timeline.js -->
-    </div>
-  </div>
-  <div class="wrap">
-    <div class="timeline-nav reveal" aria-label="Timeline navigation">
-      <button class="timeline-nav-btn" id="tl-prev" aria-label="Previous milestone">←</button>
-      <div class="timeline-progress" id="tl-progress" aria-hidden="true"></div>
-      <button class="timeline-nav-btn" id="tl-next" aria-label="Next milestone">→</button>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
      SCHEDULE
      ============================================================ -->
 <section class="section section-raised" id="schedule" aria-labelledby="schedule-heading">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="section-kicker mono">/ Schedule</div>
+      <div class="section-kicker">Schedule</div>
       <h2 id="schedule-heading">Two days of quantum exploration.</h2>
     </div>
 
@@ -593,7 +445,7 @@
 <section class="section" id="speakers" aria-labelledby="speakers-heading">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="section-kicker mono">/ Speakers</div>
+      <div class="section-kicker">Speakers</div>
       <h2 id="speakers-heading">Minds shaping quantum's next decade.</h2>
     </div>
     <!-- Speaker grid — populated by JS -->
@@ -608,79 +460,33 @@
 </section>
 
 <!-- ============================================================
-     VENUE
-     ============================================================ -->
-<section class="section section-raised" id="venue" aria-labelledby="venue-heading">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="section-kicker mono">/ Venue</div>
-      <h2 id="venue-heading">Where it happens.</h2>
-    </div>
-    <div class="venue-grid">
-      <div class="venue-info reveal">
-        <div class="venue-detail">
-          <div class="venue-detail-label mono">Institution</div>
-          <div class="venue-detail-value">Your Institution Name</div>
-        </div>
-        <div class="venue-detail">
-          <div class="venue-detail-label mono">Address</div>
-          <div class="venue-detail-value">Institution Address, Pune, Maharashtra 411000</div>
-        </div>
-        <div class="venue-detail">
-          <div class="venue-detail-label mono">Dates</div>
-          <div class="venue-detail-value">October 10–11, 2026</div>
-        </div>
-        <div class="venue-detail">
-          <div class="venue-detail-label mono">Format</div>
-          <div class="venue-detail-value">Hybrid — In-person + Virtual attendance</div>
-        </div>
-        <div class="venue-detail">
-          <div class="venue-detail-label mono">Online Platform</div>
-          <div class="venue-detail-value">Zoom / YouTube Live (link shared on registration)</div>
-        </div>
-      </div>
-      <div class="venue-map-placeholder reveal">
-        <div class="map-inner">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-            <path d="M24 4C16.27 4 10 10.27 10 18c0 10.5 14 26 14 26s14-15.5 14-26c0-7.73-6.27-14-14-14Z" stroke="currentColor" stroke-width="1.5"/>
-            <circle cx="24" cy="18" r="5" stroke="currentColor" stroke-width="1.5"/>
-          </svg>
-          <p class="mono">Pune, Maharashtra</p>
-          <p>Replace this block with an embedded map or directions</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
      ORGANIZERS / PARTNERS
      ============================================================ -->
 <section class="section section-raised" id="collaboration" aria-labelledby="partners-heading">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="section-kicker mono">/ Collaboration</div>
+      <div class="section-kicker">Collaboration</div>
       <h2 id="partners-heading">Built together by the quantum community.</h2>
     </div>
     <div class="partners-strip reveal">
       <a class="partner-slot partner-link" href="https://www.iiserpune.ac.in" target="_blank" rel="noopener noreferrer">
-        <img src="assets/logos/iiser.svg" alt="IISER Pune logo">
+        <img src="assets/logos/iiser%20pune.png" alt="IISER Pune logo">
         <span>IISER Pune</span>
       </a>
       <a class="partner-slot partner-link" href="https://mitwpu.edu.in" target="_blank" rel="noopener noreferrer">
-        <img src="assets/logos/mit-wpu.svg" alt="MIT World Peace University logo">
+        <img src="assets/logos/mit.png" alt="MIT World Peace University logo">
         <span>MIT WPU</span>
       </a>
       <a class="partner-slot partner-link" href="https://mmcoe.edu.in" target="_blank" rel="noopener noreferrer">
-        <img src="assets/logos/mmcoe.svg" alt="MMCOE logo">
+        <img src="assets/logos/mmcoe.jpeg" alt="MMCOE logo">
         <span>MMCOE</span>
       </a>
       <a class="partner-slot partner-link" href="https://www.i-hubquantum.in" target="_blank" rel="noopener noreferrer">
-        <img src="assets/logos/i-hub.svg" alt="I-HUB logo">
-        <span>I-HUB</span>
+        <img src="assets/logos/i-hub.png" alt="I-HUB logo">
+        <span>I-HUB Quantum</span>
       </a>
       <a class="partner-slot partner-link" href="https://www.ibm.com/quantum" target="_blank" rel="noopener noreferrer">
-        <img src="assets/logos/ibm-quantum.svg" alt="IBM Quantum logo">
+        <img src="assets/logos/ibm%20quantum.jpg" alt="IBM Quantum logo">
         <span>IBM Quantum</span>
       </a>
     </div>
@@ -693,7 +499,7 @@
 <section class="section" id="social" aria-labelledby="social-heading">
   <div class="wrap social-wrap">
     <div class="section-head reveal">
-      <div class="section-kicker mono">/ Social Media</div>
+      <div class="section-kicker">Social Media</div>
       <h2 id="social-heading">Stay in the quantum loop.</h2>
     </div>
     <div class="social-links reveal">
@@ -711,7 +517,7 @@
   <canvas id="register-wave-canvas" aria-hidden="true"></canvas>
   <div class="wrap register-wrap">
     <div class="register-copy reveal">
-      <div class="section-kicker mono" style="color: rgba(255,255,255,0.6)">/ Register</div>
+      <div class="section-kicker" style="color: rgba(255,255,255,0.6)">Register</div>
       <h2 id="register-heading">The future isn't waiting.</h2>
       <p>Come explore it.</p>
       <a href="#" class="btn btn-register" id="register-btn" aria-label="Register for Qiskit Fall Fest 2026">
@@ -740,7 +546,7 @@
 <section class="section" id="faq" aria-labelledby="faq-heading">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="section-kicker mono">/ FAQ</div>
+      <div class="section-kicker">FAQ</div>
       <h2 id="faq-heading">Questions? We have answers.<br><em>Probably.</em></h2>
     </div>
     <div class="faq-list reveal" id="faq-list">
