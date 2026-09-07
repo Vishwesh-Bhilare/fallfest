@@ -384,22 +384,69 @@ img { max-width: 100%; display: block; }
 }
 
 .institution-line {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  width: fit-content;
+  display: grid;
+  gap: 12px;
+  width: min(100%, 520px);
   margin-bottom: 20px;
-  padding: 10px 16px;
+  padding: 16px 18px;
   border: 2px solid var(--violet-mid);
   border-radius: var(--radius);
   background: rgba(45,35,66,0.52);
   color: var(--violet-light);
+}
+.organizer-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
   font-family: var(--font-mono);
-  font-size: 1rem;
+  font-size: 0.78rem;
   font-weight: 600;
+  letter-spacing: 0.03em;
+}
+.organizer-label {
+  min-width: 132px;
+  color: var(--violet-mid);
+  font-size: 0.62rem;
   letter-spacing: 0.08em;
 }
-.institution-line b { color: var(--violet-mid); font-weight: 400; }
+.organizer-row img {
+  width: 88px;
+  height: 42px;
+  object-fit: contain;
+  background: rgba(255,255,255,0.92);
+  border-radius: 3px;
+  padding: 4px;
+  flex-shrink: 0;
+}
+.organizer-home-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.organizer-home-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  text-align: center;
+}
+.organizer-home-item .organizer-label { min-width: 0; }
+.organizer-home-item img {
+  width: 100%;
+  max-width: 170px;
+  height: 58px;
+}
+.organizer-lead img { width: 132px; }
+.organizer-powered img { width: 108px; }
+.organizer-logos {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.organizer-logos span { color: var(--violet-light); }
 .hero-quick-links { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 22px; }
 .quick-link {
   border: 2px solid var(--violet-mid);
@@ -706,9 +753,10 @@ main {
 #collaboration { order: 6; }
 #arena { order: 7; }
 #circuit { order: 7; }
-#social { order: 8; }
-#register { order: 9; }
-#faq { order: 10; }
+#organisers { order: 8; }
+#social { order: 9; }
+#register { order: 10; }
+#faq { order: 11; }
 
 .section {
   padding: 88px 0;
@@ -1338,7 +1386,10 @@ main {
 /* ============================================================
    PARTNERS
    ============================================================ */
-.partners-strip { display: flex; flex-wrap: wrap; gap: 16px; }
+.partners-strip { display: grid; gap: 18px; }
+.partners-row { display: grid; gap: 16px; }
+.partners-row-primary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.partners-row-secondary { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .partner-slot {
   display: flex; align-items: center; gap: 10px;
   border: 1px solid var(--violet-line); border-radius: var(--radius-lg);
@@ -1348,10 +1399,33 @@ main {
 }
 .partner-slot:hover { border-color: var(--violet-light); box-shadow: var(--shadow-sm); }
 .partner-slot svg { color: var(--violet); flex-shrink: 0; }
-.partner-link { min-width: 190px; color: var(--ink-soft); }
+.partner-link { min-width: 0; color: var(--ink-soft); }
 .partner-link:hover { text-decoration: none; color: var(--ink); }
-.partner-link img { width: 42px; height: 42px; object-fit: contain; flex-shrink: 0; }
+.partner-link img { width: 78px; height: 64px; object-fit: contain; flex-shrink: 0; background: var(--white); border-radius: 4px; padding: 5px; }
+.partners-row-primary .partner-link img { width: 132px; height: 76px; }
 .partner-slot-add { border-style: dashed; color: var(--ink-faint); }
+.organisers-details-placeholder {
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed var(--violet-mid);
+  border-radius: var(--radius-lg);
+  color: var(--ink-faint);
+  background: rgba(45,35,66,0.28);
+}
+
+@media (max-width: 700px) {
+  .organizer-row { align-items: flex-start; flex-wrap: wrap; }
+  .organizer-label { width: 100%; }
+  .organizer-logos { width: 100%; }
+  .organizer-home-row { gap: 8px; }
+  .organizer-home-item img { height: 48px; }
+  .partners-row-primary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .partners-row-primary .partner-slot { padding: 10px; gap: 6px; font-size: 0.72rem; }
+  .partners-row-primary .partner-link img { width: 64px; height: 54px; }
+  .partners-row-secondary { grid-template-columns: 1fr; }
+}
 
 .social-wrap { display: flex; justify-content: space-between; gap: 32px; align-items: end; }
 .social-links { display: flex; flex-wrap: wrap; gap: 10px; }
