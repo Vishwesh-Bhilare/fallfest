@@ -438,6 +438,21 @@ img { max-width: 100%; display: block; }
   max-width: 170px;
   height: 58px;
 }
+.organizer-coorganiser-row {
+  display: grid;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(155,111,212,0.35);
+  text-align: center;
+}
+.organizer-coorganiser-row .organizer-label { min-width: 0; }
+.organizer-coorganiser-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+.organizer-coorganiser-logos img { width: 92px; height: 48px; }
 .organizer-lead img { width: 132px; }
 .organizer-powered img { width: 108px; }
 .organizer-logos {
@@ -1393,7 +1408,7 @@ main {
 .partner-slot {
   display: flex; align-items: center; gap: 10px;
   border: 1px solid var(--violet-line); border-radius: var(--radius-lg);
-  padding: 14px 22px; font-family: var(--font-mono); font-size: 0.88rem; color: var(--ink-soft);
+  padding: 18px 24px; font-family: var(--font-mono); font-size: 1rem; color: var(--ink-soft);
   background: var(--surface);
   transition: border-color 0.25s, box-shadow 0.25s;
 }
@@ -1401,8 +1416,8 @@ main {
 .partner-slot svg { color: var(--violet); flex-shrink: 0; }
 .partner-link { min-width: 0; color: var(--ink-soft); }
 .partner-link:hover { text-decoration: none; color: var(--ink); }
-.partner-link img { width: 78px; height: 64px; object-fit: contain; flex-shrink: 0; background: var(--white); border-radius: 4px; padding: 5px; }
-.partners-row-primary .partner-link img { width: 132px; height: 76px; }
+.partner-link img { width: 98px; height: 78px; object-fit: contain; flex-shrink: 0; background: var(--white); border-radius: 4px; padding: 5px; }
+.partners-row-primary .partner-link img { width: 156px; height: 90px; }
 .partner-slot-add { border-style: dashed; color: var(--ink-faint); }
 .organisers-details-placeholder {
   min-height: 180px;
@@ -1421,9 +1436,11 @@ main {
   .organizer-logos { width: 100%; }
   .organizer-home-row { gap: 8px; }
   .organizer-home-item img { height: 48px; }
+  .organizer-coorganiser-logos img { width: 78px; height: 42px; }
   .partners-row-primary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .partners-row-primary .partner-slot { padding: 10px; gap: 6px; font-size: 0.72rem; }
   .partners-row-primary .partner-link img { width: 64px; height: 54px; }
+  .partners-row-secondary .partner-slot { font-size: 0.9rem; }
   .partners-row-secondary { grid-template-columns: 1fr; }
 }
 
