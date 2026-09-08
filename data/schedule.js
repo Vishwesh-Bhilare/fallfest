@@ -24,7 +24,7 @@ window.SCHEDULE_DATA = [
     ],
     sessions: [
       { time: "10:00 am", timeEnd: "12:00 noon", title: "Talk on Applications of Quantum Technology", type: "talk", desc: "An overview of emerging applications across quantum computing, communication, sensing, and materials." },
-      { time: "10:00 am", timeEnd: "5:00 pm", title: "Exhibition and poster presentation competition", type: "competition", desc: "Exhibition with stalls of quantum board games, quantum simulation games, sponsors, and poster presentations on Applications of Quantum Technology." }
+      { time: "10:00 am", timeEnd: "5:00 pm", title: "Exhibition and poster presentation competition", type: "competition", desc: "Exhibition with stalls of quantum board games, quantum simulation games, and poster presentation competition on Applications of Quantum Technology." }
     ]
   },
   {
@@ -33,7 +33,8 @@ window.SCHEDULE_DATA = [
     venue: "MMCOE",
     mode: "In person",
     sessions: [
-      { time: "10:00 am", timeEnd: "3:00 pm", title: "Coding Challenge", type: "coding", desc: "A practical quantum coding challenge for participating teams." },
+      { time: "9:00 am", timeEnd: "1:00 pm", title: "Coding Marathon", type: "coding", desc: "A practical quantum coding marathon for participating teams." },
+      { time: "1:30 pm", timeEnd: "3:00 pm", title: "Project Exhibition", type: "competition", desc: "An exhibition of projects created during the coding marathon." },
       { time: "3:30 pm", timeEnd: "5:30 pm", title: "Prize Distribution Ceremony for Coding Challenge", type: "ceremony", desc: "Recognition and prize distribution for the Coding Challenge." }
     ]
   },
