@@ -641,7 +641,7 @@ img { max-width: 100%; display: block; }
    ============================================================ */
 .schrodinger-box {
   position: relative;
-  margin-top: 50px;
+  margin-top: 90px;
   width: 220px;
   height: 210px;
   cursor: pointer;
