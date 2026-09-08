@@ -564,9 +564,12 @@ img { max-width: 100%; display: block; }
 }
 .bloch-caption {
   text-align: center;
-  font-size: 0.82rem;
+  font-size: 1rem;
+  font-weight: 500;
   color: var(--ink-faint);
-  margin-top: 4px;
+  margin-top: 8px;
+  margin-bottom: 18px;
+  line-height: 1.4;
   opacity: 0; animation: fadeIn 0.8s ease 0.9s forwards;
 }
 
@@ -1517,6 +1520,12 @@ main {
   font-size: 1.35rem;
   font-weight: 600;
 }
+.organiser-detail {
+  margin-top: 6px;
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
 .organiser-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1527,7 +1536,19 @@ main {
   color: var(--ink-soft);
   font-size: 0.98rem;
 }
-.organiser-list li { padding-bottom: 8px; border-bottom: 1px solid var(--violet-line); }
+.organiser-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--violet-line);
+}
+.organiser-list small {
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  line-height: 1.45;
+}
 
 @media (max-width: 700px) {
   .organizer-row { align-items: flex-start; flex-wrap: wrap; }
