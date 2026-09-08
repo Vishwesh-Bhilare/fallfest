@@ -633,7 +633,7 @@ img { max-width: 100%; display: block; }
   .hero-wrap { grid-template-columns: 1fr; gap: 40px; }
   .hero-visual { order: -1; }
   #bloch-canvas { max-width: 260px; }
-  .schrodinger-box { transform: scale(0.85); }
+  odinger-box { transform: scale(0.85); }
 }
 
 /* ============================================================
@@ -641,7 +641,7 @@ img { max-width: 100%; display: block; }
    ============================================================ */
 .schrodinger-box {
   position: relative;
-  margin-top: 90px;
+  margin-top: 70px;
   width: 220px;
   height: 210px;
   cursor: pointer;
