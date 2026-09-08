@@ -1302,6 +1302,44 @@ main {
 .session-list { padding: 8px 0 0; display: none; }
 .session-list.active { display: block; }
 
+.schedule-day-details {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  padding: 16px 18px;
+  margin-bottom: 10px;
+  border: 1px solid var(--violet-line);
+  border-radius: var(--radius);
+  background: var(--bg-subtle);
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+.schedule-day-details span { display: flex; flex-direction: column; gap: 2px; }
+.schedule-day-details strong {
+  color: var(--violet);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.schedule-tracks {
+  margin: 12px 0 8px;
+  padding: 16px 18px;
+  border-left: 2px solid var(--violet-mid);
+  background: rgba(45,35,66,0.24);
+}
+.schedule-tracks-title {
+  margin-bottom: 8px;
+  color: var(--violet-light);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.schedule-tracks ol { margin: 0; padding-left: 22px; color: var(--ink-soft); font-size: 0.9rem; }
+.schedule-tracks li { padding: 2px 0; }
+
 .session-item {
   display: grid; grid-template-columns: 100px 1fr;
   gap: 24px; padding: 22px 0;
@@ -1314,6 +1352,7 @@ main {
 .session-item.hidden { display: none; }
 
 .session-time { font-family: var(--font-mono); color: var(--violet-deep); font-size: 0.86rem; padding-top: 2px; }
+.session-date-label { display: block; margin-bottom: 5px; color: var(--ink-soft); font-size: 0.7rem; }
 .session-time-end { display: block; font-size: 0.72rem; color: var(--ink-faint); margin-top: 2px; }
 .session-title { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; margin-bottom: 4px; }
 .session-speaker { font-size: 0.82rem; color: var(--violet); font-family: var(--font-mono); margin-bottom: 6px; }
@@ -1329,6 +1368,9 @@ main {
 .session-tag.tag-panel { color: #7a5a1e; background: #fdf8ed; border-color: #d8c08c; }
 .session-tag.tag-hands-on { color: #1e4a7a; background: #edf4fd; border-color: #8cb8d8; }
 .session-tag.tag-break { color: var(--ink-faint); background: transparent; border-color: transparent; }
+.session-tag.tag-competition { color: #8a4a1e; background: #fff4ea; border-color: #e2b58e; }
+.session-tag.tag-coding { color: #68418c; background: #f3edfa; border-color: #c4a3e8; }
+.session-tag.tag-ceremony { color: #7a5a1e; background: #fdf8ed; border-color: #d8c08c; }
 
 @media (max-width: 640px) {
   .session-item { grid-template-columns: 1fr; gap: 6px; }
