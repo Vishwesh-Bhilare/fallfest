@@ -2,6 +2,16 @@
 
 window.SPEAKERS_DATA = [
   {
+    id: "speaker-kunj-tondon",
+    name: "Kunj Tondon",
+    role: "CEO",
+    org: "I-HUB",
+    bio: "CEO of I-HUB supporting quantum technology innovation, collaboration, and ecosystem development.",
+    tag: "I-HUB CEO",
+    photo: "assets/logos/kunj%20tondon.png",
+    link: "#"
+  },
+  {
     id: "speaker-3",
     name: "Dr. Avik Mitra",
     role: "Scientific Advisor",
