@@ -219,6 +219,7 @@
 (function initBlochSphere() {
   const canvas = document.getElementById('bloch-canvas');
   if (!canvas) return;
+
   const ctx = canvas.getContext('2d');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -229,134 +230,476 @@
   const DOT   = '#4B2170';
 
   let W, H, dpr;
-  let mouseNX = 0, mouseNY = 0, hovering = false;
-  let angle = 0, vecTheta = Math.PI / 2.6, vecPhi = 0;
+  let mouseNX = 0;
+  let mouseNY = 0;
+  let hovering = false;
+
+  let angle = 0;
+  let vecTheta = Math.PI / 2.6;
+  let vecPhi = 0;
+
   const BASE_THETA = Math.PI / 2.6;
+  const tiltX = -0.3;
 
   function resize() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
+
     const rect = canvas.getBoundingClientRect();
-    W = rect.width; H = rect.height;
-    canvas.width = W * dpr; canvas.height = H * dpr;
+
+    W = rect.width;
+    H = rect.height;
+
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
 
-  canvas.addEventListener('mouseenter', () => hovering = true);
-  canvas.addEventListener('mouseleave', () => hovering = false);
-  canvas.addEventListener('mousemove', e => {
+  canvas.addEventListener('mouseenter', () => {
+    hovering = true;
+  });
+
+  canvas.addEventListener('mouseleave', () => {
+    hovering = false;
+  });
+
+  canvas.addEventListener('mousemove', (e) => {
     const r = canvas.getBoundingClientRect();
-    mouseNX = ((e.clientX - r.left) / r.width)  * 2 - 1;
-    mouseNY = ((e.clientY - r.top)  / r.height) * 2 - 1;
+
+    mouseNX =
+      ((e.clientX - r.left) / r.width) * 2 - 1;
+
+    mouseNY =
+      ((e.clientY - r.top) / r.height) * 2 - 1;
   });
 
   function project(x, y, z, cx, cy, r, rotY, tiltX) {
-    const cosY = Math.cos(rotY), sinY = Math.sin(rotY);
+    const cosY = Math.cos(rotY);
+    const sinY = Math.sin(rotY);
+
     const x1 = x * cosY + z * sinY;
     const z1 = -x * sinY + z * cosY;
-    const cosX = Math.cos(tiltX), sinX = Math.sin(tiltX);
+
+    const cosX = Math.cos(tiltX);
+    const sinX = Math.sin(tiltX);
+
     const y2 = y * cosX - z1 * sinX;
     const z2 = y * sinX + z1 * cosX;
-    const scale = 1 / (1 + z2 * 0.3);
-    return { sx: cx + x1 * r * scale, sy: cy + y2 * r * scale, depth: z2 };
+
+    // No perspective distortion.
+    // This keeps the projected circles aligned
+    // properly with the outer sphere.
+    const scale = 1;
+
+    return {
+      sx: cx + x1 * r * scale,
+      sy: cy + y2 * r * scale,
+      depth: z2
+    };
   }
 
-  function circlePts(axis, cx, cy, r, rotY, tiltX, steps = 64) {
-    return Array.from({ length: steps + 1 }, (_, i) => {
-      const t = (i / steps) * Math.PI * 2;
-      const [x, y, z] = axis === 'xz' ? [Math.cos(t), 0, Math.sin(t)]
-                       : axis === 'yz' ? [0, Math.cos(t), Math.sin(t)]
-                       : [Math.cos(t), Math.sin(t), 0];
-      return project(x, y, z, cx, cy, r, rotY, tiltX);
-    });
+  function circlePts(
+    axis,
+    cx,
+    cy,
+    r,
+    rotY,
+    tiltX,
+    steps = 96
+  ) {
+    return Array.from(
+      { length: steps + 1 },
+      (_, i) => {
+
+        const t =
+          (i / steps) * Math.PI * 2;
+
+        let x;
+        let y;
+        let z;
+
+        if (axis === 'xz') {
+          x = Math.cos(t);
+          y = 0;
+          z = Math.sin(t);
+        }
+        else if (axis === 'yz') {
+          x = 0;
+          y = Math.cos(t);
+          z = Math.sin(t);
+        }
+        else {
+          x = Math.cos(t);
+          y = Math.sin(t);
+          z = 0;
+        }
+
+        return project(
+          x,
+          y,
+          z,
+          cx,
+          cy,
+          r,
+          rotY,
+          tiltX
+        );
+      }
+    );
   }
 
-  function strokePts(pts, color, lw, dashed = false) {
+  function strokePts(
+    pts,
+    color,
+    lw,
+    dashed = false
+  ) {
     ctx.beginPath();
-    ctx.strokeStyle = color; ctx.lineWidth = lw;
-    ctx.setLineDash(dashed ? [3, 4] : []);
-    pts.forEach((p, i) => i === 0 ? ctx.moveTo(p.sx, p.sy) : ctx.lineTo(p.sx, p.sy));
-    ctx.stroke(); ctx.setLineDash([]);
-  }
 
-  const tiltX = -0.3;
+    ctx.strokeStyle = color;
+    ctx.lineWidth = lw;
+
+    ctx.setLineDash(
+      dashed ? [3, 4] : []
+    );
+
+    pts.forEach((p, i) => {
+      if (i === 0) {
+        ctx.moveTo(p.sx, p.sy);
+      } else {
+        ctx.lineTo(p.sx, p.sy);
+      }
+    });
+
+    ctx.stroke();
+
+    ctx.setLineDash([]);
+  }
 
   function draw() {
     ctx.clearRect(0, 0, W, H);
-    const cx = W / 2, cy = H / 2;
-    const r  = Math.min(W, H) * 0.36;
+
+    const cx = W / 2;
+    const cy = H / 2;
+
+    const r =
+      Math.min(W, H) * 0.36;
+
     const rotY = angle;
 
-    // Sphere outline
-    ctx.beginPath(); ctx.strokeStyle = LINE; ctx.lineWidth = 1.3;
-    ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.stroke();
+    /* ----------------------------------------
+       OUTER SPHERE
+       ---------------------------------------- */
 
-    // Grid circles
-    strokePts(circlePts('xz', cx, cy, r, rotY, tiltX), LINE,  1);
-    strokePts(circlePts('yz', cx, cy, r, rotY, tiltX), LSOFT, 0.8);
-    strokePts(circlePts('xy', cx, cy, r, rotY + Math.PI/2, tiltX), LSOFT, 0.8);
-
-    // Axis
-    const top    = project(0,  1, 0, cx, cy, r, rotY, tiltX);
-    const bottom = project(0, -1, 0, cx, cy, r, rotY, tiltX);
-    ctx.beginPath(); ctx.strokeStyle = LINE; ctx.lineWidth = 0.9;
-    ctx.moveTo(top.sx, top.sy); ctx.lineTo(bottom.sx, bottom.sy); ctx.stroke();
-
-    // State vector
-    const autoPhi = angle * 1.6;
-    let tTheta = BASE_THETA, tPhi = autoPhi;
-    if (hovering) {
-      tTheta = Math.max(0.15, Math.min(Math.PI - 0.15, BASE_THETA - mouseNY * 0.85));
-      tPhi = autoPhi + mouseNX * 1.25;
-    }
-    vecTheta += (tTheta - vecTheta) * 0.07;
-    vecPhi   += (tPhi   - vecPhi)   * 0.07;
-
-    const vx = Math.sin(vecTheta) * Math.cos(vecPhi);
-    const vy = Math.cos(vecTheta);
-    const vz = Math.sin(vecTheta) * Math.sin(vecPhi);
-    const tip    = project(vx, vy, vz, cx, cy, r, rotY, tiltX);
-    const origin = project(0, 0, 0,   cx, cy, r, rotY, tiltX);
-
-    // Glow under vector
     ctx.beginPath();
-    ctx.strokeStyle = 'rgba(155,111,212,0.18)'; ctx.lineWidth = 6;
-    ctx.moveTo(origin.sx, origin.sy); ctx.lineTo(tip.sx, tip.sy);
+
+    ctx.strokeStyle = LINE;
+    ctx.lineWidth = 1.3;
+
+    ctx.arc(
+      cx,
+      cy,
+      r,
+      0,
+      Math.PI * 2
+    );
+
     ctx.stroke();
 
-    // Vector line
-    ctx.beginPath(); ctx.strokeStyle = ACCT; ctx.lineWidth = 2;
-    ctx.moveTo(origin.sx, origin.sy); ctx.lineTo(tip.sx, tip.sy); ctx.stroke();
+    /* ----------------------------------------
+       GRID CIRCLES
+       ---------------------------------------- */
 
-    // Arrowhead
-    const ang = Math.atan2(tip.sy - origin.sy, tip.sx - origin.sx);
-    ctx.beginPath(); ctx.fillStyle = ACCT;
-    ctx.moveTo(tip.sx, tip.sy);
-    ctx.lineTo(tip.sx - 9 * Math.cos(ang - 0.4), tip.sy - 9 * Math.sin(ang - 0.4));
-    ctx.lineTo(tip.sx - 9 * Math.cos(ang + 0.4), tip.sy - 9 * Math.sin(ang + 0.4));
-    ctx.closePath(); ctx.fill();
+    strokePts( 
+     circlePts( 
+       'yz', 
+       cx, 
+       cy, 
+       r * 1.03, 
+       rotY, 
+       tiltX 
+     ), 
+     LSOFT, 
+     0.8 
+   ); 
+   
+   strokePts( 
+     circlePts( 
+       'xy', 
+       cx, 
+       cy, 
+       r * 1.03, 
+       rotY + Math.PI / 2, 
+       tiltX 
+     ), 
+     LSOFT, 
+     0.8 
+   ); 
 
-    // Tip dot
-    ctx.beginPath(); ctx.fillStyle = DOT;
-    ctx.arc(tip.sx, tip.sy, 3.5, 0, Math.PI * 2); ctx.fill();
+    strokePts(
+      circlePts(
+        'xy',
+        cx,
+        cy,
+        r,
+        rotY + Math.PI / 2,
+        tiltX
+      ),
+      LSOFT,
+      0.8
+    );
 
-    // Pole labels
-    ctx.font = '12px "IBM Plex Mono", monospace';
-    ctx.fillStyle = INK; ctx.textAlign = 'center';
-    ctx.fillText('|0⟩', top.sx,    top.sy    - 13);
-    ctx.fillText('|1⟩', bottom.sx, bottom.sy + 18);
+    /* ----------------------------------------
+       VERTICAL AXIS
+       ---------------------------------------- */
 
-    if (!reduced) angle += 0.006;
+    const top = project(
+      0,
+      1,
+      0,
+      cx,
+      cy,
+      r,
+      rotY,
+      tiltX
+    );
+
+    const bottom = project(
+      0,
+      -1,
+      0,
+      cx,
+      cy,
+      r,
+      rotY,
+      tiltX
+    );
+
+    ctx.beginPath();
+
+    ctx.strokeStyle = LINE;
+    ctx.lineWidth = 0.9;
+
+    ctx.moveTo(
+      top.sx,
+      top.sy
+    );
+
+    ctx.lineTo(
+      bottom.sx,
+      bottom.sy
+    );
+
+    ctx.stroke();
+
+    /* ----------------------------------------
+       STATE VECTOR
+       ---------------------------------------- */
+
+    const autoPhi =
+      angle * 1.6;
+
+    let tTheta =
+      BASE_THETA;
+
+    let tPhi =
+      autoPhi;
+
+    if (hovering) {
+      tTheta = Math.max(
+        0.15,
+        Math.min(
+          Math.PI - 0.15,
+          BASE_THETA - mouseNY * 0.85
+        )
+      );
+
+      tPhi =
+        autoPhi + mouseNX * 1.25;
+    }
+
+    vecTheta +=
+      (tTheta - vecTheta) * 0.07;
+
+    vecPhi +=
+      (tPhi - vecPhi) * 0.07;
+
+    const vx =
+      Math.sin(vecTheta) *
+      Math.cos(vecPhi);
+
+    const vy =
+      Math.cos(vecTheta);
+
+    const vz =
+      Math.sin(vecTheta) *
+      Math.sin(vecPhi);
+
+    const tip = project(
+      vx,
+      vy,
+      vz,
+      cx,
+      cy,
+      r,
+      rotY,
+      tiltX
+    );
+
+    const origin = project(
+      0,
+      0,
+      0,
+      cx,
+      cy,
+      r,
+      rotY,
+      tiltX
+    );
+
+    /* ----------------------------------------
+       VECTOR GLOW
+       ---------------------------------------- */
+
+    ctx.beginPath();
+
+    ctx.strokeStyle =
+      'rgba(155,111,212,0.18)';
+
+    ctx.lineWidth = 6;
+
+    ctx.moveTo(
+      origin.sx,
+      origin.sy
+    );
+
+    ctx.lineTo(
+      tip.sx,
+      tip.sy
+    );
+
+    ctx.stroke();
+
+    /* ----------------------------------------
+       VECTOR LINE
+       ---------------------------------------- */
+
+    ctx.beginPath();
+
+    ctx.strokeStyle = ACCT;
+    ctx.lineWidth = 2;
+
+    ctx.moveTo(
+      origin.sx,
+      origin.sy
+    );
+
+    ctx.lineTo(
+      tip.sx,
+      tip.sy
+    );
+
+    ctx.stroke();
+
+    /* ----------------------------------------
+       ARROWHEAD
+       ---------------------------------------- */
+
+    const ang =
+      Math.atan2(
+        tip.sy - origin.sy,
+        tip.sx - origin.sx
+      );
+
+    ctx.beginPath();
+
+    ctx.fillStyle = ACCT;
+
+    ctx.moveTo(
+      tip.sx,
+      tip.sy
+    );
+
+    ctx.lineTo(
+      tip.sx -
+        9 * Math.cos(ang - 0.4),
+      tip.sy -
+        9 * Math.sin(ang - 0.4)
+    );
+
+    ctx.lineTo(
+      tip.sx -
+        9 * Math.cos(ang + 0.4),
+      tip.sy -
+        9 * Math.sin(ang + 0.4)
+    );
+
+    ctx.closePath();
+    ctx.fill();
+
+    /* ----------------------------------------
+       TIP DOT
+       ---------------------------------------- */
+
+    ctx.beginPath();
+
+    ctx.fillStyle = DOT;
+
+    ctx.arc(
+      tip.sx,
+      tip.sy,
+      3.5,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fill();
+
+    /* ----------------------------------------
+       POLE LABELS
+       ---------------------------------------- */
+
+    ctx.font =
+      '12px "IBM Plex Mono", monospace';
+
+    ctx.fillStyle = INK;
+    ctx.textAlign = 'center';
+
+    ctx.fillText(
+      '|0⟩',
+      top.sx,
+      top.sy - 13
+    );
+
+    ctx.fillText(
+      '|1⟩',
+      bottom.sx,
+      bottom.sy + 18
+    );
+
+    if (!reduced) {
+      angle += 0.006;
+    }
   }
 
-  let last = performance.now();
-  function loop(now) {
+  function loop() {
     draw();
     requestAnimationFrame(loop);
   }
 
-  window.addEventListener('resize', resize, { passive: true });
+  window.addEventListener(
+    'resize',
+    resize,
+    { passive: true }
+  );
+
   resize();
-  if (reduced) draw(); else requestAnimationFrame(loop);
+
+  if (reduced) {
+    draw();
+  } else {
+    requestAnimationFrame(loop);
+  }
 })();
 
 /* ============================================================
