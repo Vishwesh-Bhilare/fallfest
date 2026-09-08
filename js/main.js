@@ -571,7 +571,10 @@
 
   const data = window.SCHEDULE_DATA;
 
-  const TYPE_LABELS = { talk:'Talk', workshop:'Workshop', panel:'Panel', 'hands-on':'Hands-On', break:'Break' };
+  const TYPE_LABELS = {
+    talk: 'Talk', workshop: 'Workshop', panel: 'Panel', 'hands-on': 'Hands-On',
+    break: 'Break', competition: 'Competition', coding: 'Coding Challenge', ceremony: 'Ceremony'
+  };
 
   // Build day tabs + panels
   data.forEach((day, di) => {
@@ -591,6 +594,24 @@
     panel.className = 'session-list' + (di === 0 ? ' active' : '');
     panel.setAttribute('role', 'tabpanel');
 
+    if (day.venue || day.mode) {
+      const details = document.createElement('div');
+      details.className = 'schedule-day-details';
+      details.innerHTML = `
+        ${day.venue ? `<span><strong>Venue</strong>${day.venue}</span>` : ''}
+        ${day.mode ? `<span><strong>Mode of Conduct</strong>${day.mode}</span>` : ''}`;
+      panel.appendChild(details);
+    }
+
+    if (day.tracks?.length) {
+      const tracks = document.createElement('div');
+      tracks.className = 'schedule-tracks';
+      tracks.innerHTML = `
+        <div class="schedule-tracks-title">Tracks for Poster Competition</div>
+        <ol>${day.tracks.map(track => `<li>${track}</li>`).join('')}</ol>`;
+      panel.appendChild(tracks);
+    }
+
     day.sessions.forEach(sess => {
       const item = document.createElement('div');
       item.className = 'session-item reveal';
@@ -598,6 +619,7 @@
       const tagClass = sess.type === 'talk' ? '' : `tag-${sess.type}`;
       item.innerHTML = `
         <div class="session-time">
+          ${sess.dateLabel ? `<span class="session-date-label">${sess.dateLabel}</span>` : ''}
           ${sess.time}
           <span class="session-time-end">→ ${sess.timeEnd}</span>
         </div>

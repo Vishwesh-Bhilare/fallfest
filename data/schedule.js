@@ -1,150 +1,70 @@
-// ============================================================
-//  Schedule Data
-//  type: "talk" | "workshop" | "panel" | "hands-on" | "break"
-//  Replace with real schedule before launch.
-// ============================================================
+// Qiskit Fall Fest 2026 schedule
 
 window.SCHEDULE_DATA = [
-  // DAY 1
   {
-    day: "day1",
-    dayLabel: "Day 1 — Oct 10",
+    day: "oct21",
+    dayLabel: "21 October",
+    venue: "MIT World Peace University",
+    mode: "In person",
     sessions: [
-      {
-        time: "09:00",
-        timeEnd: "09:30",
-        title: "Registration & Welcome Coffee",
-        speaker: "",
-        type: "break",
-        desc: "Arrival, badge collection, and networking. Grab a coffee and meet fellow quantum enthusiasts."
-      },
-      {
-        time: "09:30",
-        timeEnd: "10:30",
-        title: "Opening Ceremony & Keynote: A Decade of Quantum on Cloud",
-        speaker: "Dr. Priya Sharma",
-        type: "talk",
-        desc: "A panoramic view of ten years of quantum computing — from the first cloud QPU to today's utility-scale systems. What have we learned, and where are we going?"
-      },
-      {
-        time: "10:45",
-        timeEnd: "11:45",
-        title: "Quantum Computing 101: From Bits to Qubits",
-        speaker: "Prof. Marcus Webb",
-        type: "talk",
-        desc: "An accessible introduction to quantum computing principles — superposition, entanglement, and interference — for participants with no prior quantum background."
-      },
-      {
-        time: "12:00",
-        timeEnd: "13:30",
-        title: "Hands-On: Your First Quantum Circuit with Qiskit",
-        speaker: "Rahul Verma",
-        type: "hands-on",
-        desc: "Build and run your first quantum circuit on real IBM quantum hardware using Qiskit. Laptops required. No prior programming experience needed beyond basic Python."
-      },
-      {
-        time: "13:30",
-        timeEnd: "14:30",
-        title: "Lunch Break & Networking",
-        speaker: "",
-        type: "break",
-        desc: "Lunch provided. Great opportunity to connect with speakers and fellow attendees."
-      },
-      {
-        time: "14:30",
-        timeEnd: "15:30",
-        title: "Variational Quantum Algorithms in the NISQ Era",
-        speaker: "Dr. Kenji Watanabe",
-        type: "talk",
-        desc: "Deep dive into VQE, QAOA, and other variational approaches. What can we solve today, and what are the practical limitations?"
-      },
-      {
-        time: "15:45",
-        timeEnd: "17:00",
-        title: "Workshop: Quantum Error Mitigation with Qiskit",
-        speaker: "Dr. Priya Sharma",
-        type: "workshop",
-        desc: "Practical techniques for getting better results from noisy quantum hardware. Covers zero-noise extrapolation and probabilistic error cancellation."
-      },
-      {
-        time: "17:00",
-        timeEnd: "17:30",
-        title: "Panel: Quantum Education — Challenges & Opportunities",
-        speaker: "All Day 1 Speakers",
-        type: "panel",
-        desc: "An open discussion on quantum literacy, curriculum design, and how to build the next generation of quantum scientists and engineers."
-      }
+      { time: "11:00 am", timeEnd: "1:00 pm", title: "Inauguration session and talk on Fundamentals of Quantum Physics", type: "talk", desc: "Opening the Fall Fest program with an introduction to quantum physics." },
+      { time: "2:30 pm", timeEnd: "5:30 pm", title: "IBM speaker session on Basics of programming with Qiskit", type: "workshop", desc: "An introductory programming session with Qiskit led by an IBM speaker." }
     ]
   },
-  // DAY 2
   {
-    day: "day2",
-    dayLabel: "Day 2 — Oct 11",
+    day: "oct22",
+    dayLabel: "22 October",
+    venue: "MIT World Peace University",
+    mode: "In person",
+    tracks: [
+      "Applications of Quantum Computing / Quantum AI/ML",
+      "Applications of Quantum Communication / Cryptography",
+      "Applications of Quantum Sensors",
+      "Applications of Quantum Materials / Devices"
+    ],
     sessions: [
-      {
-        time: "09:00",
-        timeEnd: "09:30",
-        title: "Morning Coffee & Open Networking",
-        speaker: "",
-        type: "break",
-        desc: "Informal start to the day. Continue conversations from Day 1."
-      },
-      {
-        time: "09:30",
-        timeEnd: "10:30",
-        title: "Quantum Hardware: Inside the Superconducting Qubit",
-        speaker: "Dr. Aisha Okonkwo",
-        type: "talk",
-        desc: "How do quantum processors actually work? A look inside the engineering of superconducting qubits — from chip design to dilution refrigerators."
-      },
-      {
-        time: "10:45",
-        timeEnd: "12:00",
-        title: "Hands-On: Quantum Chemistry Simulation",
-        speaker: "Dr. Kenji Watanabe",
-        type: "hands-on",
-        desc: "Simulate molecular ground states using VQE on IBM Quantum systems. Practical Qiskit Nature tutorial with real hardware execution."
-      },
-      {
-        time: "12:00",
-        timeEnd: "13:30",
-        title: "Lunch & Project Showcase",
-        speaker: "",
-        type: "break",
-        desc: "Lunch provided. Student and community project showcase — bring your quantum experiments to share."
-      },
-      {
-        time: "13:30",
-        timeEnd: "14:30",
-        title: "The Quantum Internet: Entanglement at Scale",
-        speaker: "Dr. Sofia Mendes",
-        type: "talk",
-        desc: "What would a global quantum network look like? From quantum repeaters to quantum memory — the engineering challenges of distributing entanglement."
-      },
-      {
-        time: "14:45",
-        timeEnd: "16:00",
-        title: "Workshop: Building with Qiskit Runtime",
-        speaker: "Rahul Verma",
-        type: "workshop",
-        desc: "Use Qiskit Runtime primitives (Sampler, Estimator) to build scalable quantum-classical hybrid applications on IBM Cloud."
-      },
-      {
-        time: "16:00",
-        timeEnd: "17:00",
-        title: "Panel: The Next Decade — Where Is Quantum Heading?",
-        speaker: "All Speakers",
-        type: "panel",
-        desc: "A forward-looking conversation about fault-tolerant quantum computing, quantum advantage, and the societal implications of quantum technology."
-      },
-      {
-        time: "17:00",
-        timeEnd: "17:30",
-        title: "Closing Ceremony & Certificate Distribution",
-        speaker: "",
-        type: "break",
-        desc: "Closing remarks, thank-yous, and certificate distribution for all registered participants."
-      }
+      { time: "10:00 am", timeEnd: "12:00 noon", title: "Talk on Applications of Quantum Technology", type: "talk", desc: "An overview of emerging applications across quantum computing, communication, sensing, and materials." },
+      { time: "10:00 am", timeEnd: "5:00 pm", title: "Exhibition and poster presentation competition", type: "competition", desc: "Exhibition with stalls of quantum board games, quantum simulation games, sponsors, and poster presentations on Applications of Quantum Technology." }
+    ]
+  },
+  {
+    day: "oct23",
+    dayLabel: "23 October",
+    venue: "MMCOE",
+    mode: "In person",
+    sessions: [
+      { time: "10:00 am", timeEnd: "3:00 pm", title: "Coding Challenge", type: "coding", desc: "A practical quantum coding challenge for participating teams." },
+      { time: "3:30 pm", timeEnd: "5:30 pm", title: "Prize Distribution Ceremony for Coding Challenge", type: "ceremony", desc: "Recognition and prize distribution for the Coding Challenge." }
+    ]
+  },
+  {
+    day: "oct26-30",
+    dayLabel: "26–30 October",
+    venue: "Online",
+    mode: "Online",
+    sessions: [
+      { dateLabel: "26 October", time: "10:00 am", timeEnd: "12:00 noon", title: "Evolution and Fundamentals of Quantum Computing", type: "talk", desc: "" },
+      { dateLabel: "26 October", time: "1:00 pm", timeEnd: "3:00 pm", title: "Superposition, Entanglement and Quantum Measurement", type: "talk", desc: "" },
+      { dateLabel: "27 October", time: "10:00 am", timeEnd: "12:00 noon", title: "Quantum Gates and Bloch Sphere", type: "talk", desc: "" },
+      { dateLabel: "27 October", time: "1:00 pm", timeEnd: "3:00 pm", title: "Multi-Qubit Gates and Quantum Circuits", type: "workshop", desc: "" },
+      { dateLabel: "28 October", time: "10:00 am", timeEnd: "12:00 noon", title: "Introduction to Quantum Programming with Qiskit", type: "workshop", desc: "" },
+      { dateLabel: "28 October", time: "1:00 pm", timeEnd: "3:00 pm", title: "Entanglement and Quantum Protocols", type: "talk", desc: "" },
+      { dateLabel: "29 October", time: "10:00 am", timeEnd: "12:00 noon", title: "Superdense Coding and Quantum Teleportation on Qiskit", type: "hands-on", desc: "" },
+      { dateLabel: "29 October", time: "1:00 pm", timeEnd: "3:00 pm", title: "Introduction to Quantum Algorithms", type: "talk", desc: "" },
+      { dateLabel: "30 October", time: "10:00 am", timeEnd: "12:00 noon", title: "Hands-on session for Quantum Protocols", type: "hands-on", desc: "" },
+      { dateLabel: "30 October", time: "1:00 pm", timeEnd: "3:00 pm", title: "Hands-on session for Quantum Algorithms", type: "hands-on", desc: "" }
+    ]
+  },
+  {
+    day: "oct31",
+    dayLabel: "31 October",
+    venue: "MIT World Peace University",
+    mode: "In person",
+    sessions: [
+      { time: "9:00 am", timeEnd: "3:00 pm", title: "HaQthon Competition", type: "competition", desc: "A full-day quantum hackathon competition." },
+      { time: "10:00 am", timeEnd: "12:00 noon", title: "Workshop on Quantum Cryptography", type: "workshop", desc: "An applied workshop introducing the principles of quantum cryptography." },
+      { time: "1:00 pm", timeEnd: "3:00 pm", title: "Hands-on session for BB84 protocol", type: "hands-on", desc: "Build and explore the BB84 quantum key distribution protocol." },
+      { time: "3:30 pm", timeEnd: "5:30 pm", title: "Prize distribution ceremony for Poster Presentation and HaQthon competition", type: "ceremony", desc: "Recognition and prize distribution for the Poster Presentation and HaQthon competitions." }
     ]
   }
 ];
