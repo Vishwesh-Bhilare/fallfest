@@ -13,7 +13,7 @@ window.SPEAKERS_DATA = [
   },
   {
     id: "speaker-kunj-tondon",
-    name: "Kunj Tondon",
+    name: "Dr. Kunj Tondon",
     role: "CEO",
     org: "I-HUB",
     bio: "CEO of I-HUB supporting quantum technology innovation, collaboration, and ecosystem development.",
