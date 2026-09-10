@@ -1401,13 +1401,13 @@ main {
 
 .speaker-card-inner { padding: 24px; }
 .speaker-photo {
-  width: 72px; height: 72px; border-radius: 50%;
+  width: 104px; height: 104px; border-radius: 50%;
   background: var(--bg-raised); border: 2px solid var(--violet-line);
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 16px; overflow: hidden; color: var(--violet);
   flex-shrink: 0;
 }
-.speaker-photo svg { width: 42px; height: 42px; }
+.speaker-photo svg { width: 58px; height: 58px; }
 .speaker-photo img { width: 100%; height: 100%; object-fit: cover; }
 
 .speaker-tag {
@@ -1484,8 +1484,8 @@ main {
 .partner-slot svg { color: var(--violet); flex-shrink: 0; }
 .partner-link { min-width: 0; color: var(--ink-soft); }
 .partner-link:hover { text-decoration: none; color: var(--ink); }
-.partner-link img { width: 98px; height: 78px; object-fit: contain; flex-shrink: 0; background: var(--white); border-radius: 4px; padding: 5px; }
-.partners-row-primary .partner-link img { width: 156px; height: 90px; }
+.partner-link img { width: 120px; height: 96px; object-fit: contain; flex-shrink: 0; background: var(--white); border-radius: 4px; padding: 5px; }
+.partners-row-primary .partner-link img { width: 180px; height: 105px; }
 .partner-slot-add { border-style: dashed; color: var(--ink-faint); }
 .organisers-details-placeholder {
   min-height: 180px;
