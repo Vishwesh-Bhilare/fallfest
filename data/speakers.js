@@ -2,6 +2,16 @@
 
 window.SPEAKERS_DATA = [
   {
+    id: "speaker-satishchandra-ogale",
+    name: "Prof. Satishchandra Ogale",
+    role: "Director, Research Institute for Sustainable Energy, TCG CREST, Kolkata",
+    org: "Adj Faculty, IISER, Pune · Sr. Advisor R & D, MIT WPU, Pune",
+    bio: "Director of the Research Institute for Sustainable Energy at TCG CREST, Kolkata, and an advisor supporting research and development at MIT WPU, Pune.",
+    tag: "Featured Speaker",
+    photo: "assets/logos/satishchandra%20ogale.jpeg",
+    link: "#"
+  },
+  {
     id: "speaker-kunj-tondon",
     name: "Kunj Tondon",
     role: "CEO",
@@ -9,6 +19,16 @@ window.SPEAKERS_DATA = [
     bio: "CEO of I-HUB supporting quantum technology innovation, collaboration, and ecosystem development.",
     tag: "I-HUB CEO",
     photo: "assets/logos/kunj%20tondon.png",
+    link: "#"
+  },
+  {
+    id: "speaker-shrirang-karandikar",
+    name: "Shrirang Karandikar",
+    role: "Speaker",
+    org: "",
+    bio: "Contributing speaker at Qiskit Fall Fest 2026.",
+    tag: "Speaker",
+    photo: "assets/logos/shrirang%20karandikar.png",
     link: "#"
   },
   {
