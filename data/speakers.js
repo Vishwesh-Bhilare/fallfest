@@ -7,7 +7,7 @@ window.SPEAKERS_DATA = [
     role: "Director, Research Institute for Sustainable Energy, TCG CREST, Kolkata",
     org: "Adj Faculty, IISER, Pune · Sr. Advisor R & D, MIT WPU, Pune",
     bio: "Director of the Research Institute for Sustainable Energy at TCG CREST, Kolkata, and an advisor supporting research and development at MIT WPU, Pune.",
-    tag: "Featured Speaker",
+    tag: "Distinguished Speaker",
     photo: "assets/logos/satishchandra%20ogale.jpeg",
     link: "#"
   },
@@ -17,17 +17,17 @@ window.SPEAKERS_DATA = [
     role: "CEO",
     org: "I-HUB",
     bio: "CEO of I-HUB supporting quantum technology innovation, collaboration, and ecosystem development.",
-    tag: "I-HUB CEO",
+    tag: "Featured Speaker",
     photo: "assets/logos/kunj%20tondon.png",
     link: "#"
   },
   {
     id: "speaker-shrirang-karandikar",
-    name: "Shrirang Karandikar",
-    role: "Speaker",
-    org: "",
-    bio: "Contributing speaker at Qiskit Fall Fest 2026.",
-    tag: "Speaker",
+    name: "Prof. Shrirang Karandikar",
+    role: "Quantum Computer Middleware and Application Software Development",
+    org: "Consultant, I-Hub Quantum Technology Foundation",
+    bio: "Working on quantum computer middleware and application software development, education, and community initiatives.",
+    tag: "Featured Speaker",
     photo: "assets/logos/shrirang%20karandikar.png",
     link: "#"
   },
@@ -37,7 +37,7 @@ window.SPEAKERS_DATA = [
     role: "Scientific Advisor",
     org: "IHUB-QTF",
     bio: "Scientific advisor at IHUB-QTF supporting quantum technology research, education, and community initiatives.",
-    tag: "Scientific Advisor",
+    tag: "Featured Speaker",
     photo: "assets/logos/avik%20mitra.png",
     link: "#"
   },
@@ -59,6 +59,36 @@ window.SPEAKERS_DATA = [
     bio: "Faculty member at MIT World Peace University. Works on building awareness and practical understanding of quantum technologies for the next generation of learners.",
     tag: "Speaker",
     photo: "assets/logos/Apurv-Nellikka.webp",
+    link: "#"
+  },
+  {
+    id: "speaker-preeti-kale",
+    name: "Dr. Preeti Kale",
+    role: "Faculty Member",
+    org: "MIT World Peace University",
+    bio: "Faculty member at MIT World Peace University. Works as an engineering educator and mentor advancing quantum computing awareness and research.",
+    tag: "Speaker",
+    photo: "assets/logos/preeti%20kale.png",
+    link: "#"
+  },
+  {
+    id: "speaker-kanaka-raju-pandiri",
+    name: "Dr. Kanaka Raju Pandiri",
+    role: "Assistant Professor",
+    org: "DIAT (D.U.) Pune · School of Quantum Technology",
+    bio: "Dr. Kanaka Raju Pandiri completed his Ph.D. at the University of Electro-Communications, Japan. He joined DIAT (D.U.) Pune in 2020 and works in the School of Quantum Technology as an Assistant Professor.",
+    tag: "Speaker",
+    photo: "assets/logos/mmcoe%20speaker%201%20.png",
+    link: "#"
+  },
+  {
+    id: "speaker-k-srinivasan",
+    name: "Dr. K. Srinivasan",
+    role: "Assistant Professor",
+    org: "DIAT (D.U.) Pune · School of Quantum Technology",
+    bio: "Dr. K. Srinivasan completed his Ph.D. at Homi Bhabha National Institute, Mumbai, India. He joined DIAT (D.U.) Pune in 2021 and works in the School of Quantum Technology as an Assistant Professor.",
+    tag: "Speaker",
+    photo: null,
     link: "#"
   },
   {
