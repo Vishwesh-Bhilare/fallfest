@@ -1543,6 +1543,7 @@ main {
   padding-bottom: 8px;
   border-bottom: 1px solid var(--violet-line);
 }
+.organiser-list li > span { white-space: nowrap; }
 .organiser-list small {
   color: var(--ink-faint);
   font-family: var(--font-mono);

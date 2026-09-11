@@ -77,7 +77,7 @@ window.SPEAKERS_DATA = [
     role: "Assistant Professor",
     org: "DIAT (D.U.) Pune · School of Quantum Technology",
     bio: "Dr. Kanaka Raju Pandiri completed his Ph.D. at the University of Electro-Communications, Japan. He joined DIAT (D.U.) Pune in 2020 and works in the School of Quantum Technology as an Assistant Professor.",
-    tag: "Speaker",
+    tag: "Featured Speaker",
     photo: "assets/logos/mmcoe%20speaker%201%20.png",
     link: "#"
   },
@@ -87,7 +87,7 @@ window.SPEAKERS_DATA = [
     role: "Assistant Professor",
     org: "DIAT (D.U.) Pune · School of Quantum Technology",
     bio: "Dr. K. Srinivasan completed his Ph.D. at Homi Bhabha National Institute, Mumbai, India. He joined DIAT (D.U.) Pune in 2021 and works in the School of Quantum Technology as an Assistant Professor.",
-    tag: "Speaker",
+    tag: "Featured Speaker",
     photo: null,
     link: "#"
   },
