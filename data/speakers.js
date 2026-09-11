@@ -64,7 +64,7 @@ window.SPEAKERS_DATA = [
   {
     id: "speaker-preeti-kale",
     name: "Dr. Preeti Kale",
-    role: "Faculty Member",
+    role: "Department of Computer Science Engineering",
     org: "MIT World Peace University",
     bio: "Faculty member at MIT World Peace University. Works as an engineering educator and mentor advancing quantum computing awareness and research.",
     tag: "Speaker",
