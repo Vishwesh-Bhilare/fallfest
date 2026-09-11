@@ -24,8 +24,8 @@ window.SPEAKERS_DATA = [
   {
     id: "speaker-shrirang-karandikar",
     name: "Prof. Shrirang Karandikar",
-    role: "Quantum Computer Middleware and Application Software Development",
-    org: "Consultant, I-Hub Quantum Technology Foundation",
+    role: "Consultant, I-Hub Quantum Technology Foundation",
+    org: "Quantum Computer Middleware and Application Software Development",
     bio: "Working on quantum computer middleware and application software development, education, and community initiatives.",
     tag: "Featured Speaker",
     photo: "assets/logos/shrirang%20karandikar.png",
